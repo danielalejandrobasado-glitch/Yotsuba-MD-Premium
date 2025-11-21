@@ -7,6 +7,7 @@ import chalk from "chalk"
 import fetch from "node-fetch"
 import ws from "ws"
 
+const { proto } = (await import("@whiskeysockets/baileys")).default
 const isNumber = x => typeof x === "number" && !isNaN(x)
 const delay = ms => isNumber(ms) && new Promise(resolve => setTimeout(function () {
 clearTimeout(this)
@@ -16,21 +17,24 @@ resolve()
 export async function handler(chatUpdate) {
 this.msgqueque = this.msgqueque || []
 this.uptime = this.uptime || Date.now()
-if (!chatUpdate) return
+if (!chatUpdate) {
+return
+}
 this.pushMessage(chatUpdate.messages).catch(console.error)
 let m = chatUpdate.messages[chatUpdate.messages.length - 1]
-if (!m) return
-if (global.db.data == null)
-await global.loadDatabase()
+if (!m) {
+return
+}
+if (global.db.data == null) await global.loadDatabase()
 try {
 m = smsg(this, m) || m
-if (!m) return
+if (!m) {
+return
+}
 m.exp = 0
 try {
 const user = global.db.data.users[m.sender]
-if (typeof user !== "object") {
-global.db.data.users[m.sender] = {}
-}
+if (typeof user !== "object") global.db.data.users[m.sender] = {}
 if (user) {
 if (!("name" in user)) user.name = m.name
 if (!("exp" in user) || !isNumber(user.exp)) user.exp = 0
@@ -73,9 +77,7 @@ afkReason: "",
 warn: 0
 }
 const chat = global.db.data.chats[m.chat]
-if (typeof chat !== "object") {
-global.db.data.chats[m.chat] = {}
-}
+if (typeof chat !== "object") global.db.data.chats[m.chat] = {}
 if (chat) {
 if (!("isBanned" in chat)) chat.isBanned = false
 if (!("isMute" in chat)) chat.isMute = false;
@@ -104,21 +106,13 @@ economy: true,
 gacha: true
 }
 const settings = global.db.data.settings[this.user.jid]
-if (typeof settings !== "object") {
-global.db.data.settings[this.user.jid] = {}
-}
+if (typeof settings !== "object") global.db.data.settings[this.user.jid] = {}
 if (settings) {
 if (!("self" in settings)) settings.self = false
-if (!("restrict" in settings)) settings.restrict = true
 if (!("jadibotmd" in settings)) settings.jadibotmd = true
-if (!("antiPrivate" in settings)) settings.antiPrivate = false
-if (!("gponly" in settings)) settings.gponly = false
 } else global.db.data.settings[this.user.jid] = {
 self: false,
-restrict: true,
-jadibotmd: true,
-antiPrivate: false,
-gponly: false
+jadibotmd: true
 }} catch (e) {
 console.error(e)
 }
@@ -132,12 +126,10 @@ user.name = nuevo
 }} catch {}
 const chat = global.db.data.chats[m.chat]
 const settings = global.db.data.settings[this.user.jid]  
-const isROwner = [...global.owner.map((number) => number)].map(v => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(m.sender)
+const isROwner = [...global.owner.map((number) => Array.isArray(number) ? number[0] : number)].map(v => String(v).replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(m.sender)
 const isOwner = isROwner || m.fromMe
-const isPrems = isROwner || global.prems.map(v => v.replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(m.sender) || user.premium == true
-const isOwners = [this.user.jid, ...global.owner.map((number) => number + "@s.whatsapp.net")].includes(m.sender)
-if (settings.self && !isOwners) return
-if (settings.gponly && !isOwners && !m.chat.endsWith('g.us') && !/code|p|ping|qr|estado|status|infobot|botinfo|report|reportar|invite|join|logout|suggest|help|menu/gim.test(m.text)) return
+const isPrems = isROwner || global.prems.map(v => String(v).replace(/[^0-9]/g, "") + "@s.whatsapp.net").includes(m.sender) || user.premium == true
+const isOwners = [this.user.jid, ...global.owner.map((number) => (Array.isArray(number) ? number[0] : number) + "@s.whatsapp.net")].includes(m.sender)
 if (opts["queque"] && m.text && !(isPrems)) {
 const queque = this.msgqueque, time = 1000 * 5
 const previousID = queque[queque.length - 1]
@@ -147,7 +139,7 @@ if (queque.indexOf(previousID) === -1) clearInterval(this)
 await delay(time)
 }, time)
 }
-
+ 
 if (m.isBaileys) return
 m.exp += Math.ceil(Math.random() * 10)
 let usedPrefix
@@ -237,9 +229,9 @@ typeof plugin.command === "string" ?
 plugin.command === command : false
 global.comando = command
 
+if (!isOwners && settings.self) return
 if ((m.id.startsWith("NJX-") || (m.id.startsWith("BAE5") && m.id.length === 16) || (m.id.startsWith("B24E") && m.id.length === 20))) return
 
-// Primary by: Alex 🐼
 if (global.db.data.chats[m.chat].primaryBot && global.db.data.chats[m.chat].primaryBot !== this.user.jid) {
 const primaryBotConn = global.conns.find(conn => conn.user.jid === global.db.data.chats[m.chat].primaryBot && conn.ws.socket && conn.ws.socket.readyState !== ws.CLOSED)
 const participants = m.isGroup ? (await this.groupMetadata(m.chat).catch(() => ({ participants: [] }))).participants : []
@@ -259,16 +251,17 @@ const botId = this.user.jid
 const primaryBotId = chat.primaryBot
 if (name !== "group-banchat.js" && chat?.isBanned && !isROwner) {
 if (!primaryBotId || primaryBotId === botId) {
-const aviso = `ꕥ El bot *${botname}* está desactivado en este grupo\n\n> ✦ Un *administrador* puede activarlo con el comando:\n> » *${usedPrefix}bot on*`.trim()
+const aviso = `💙 El bot *${global.botname}* está desactivado en este grupo\n\n> 🌱 Un *administrador* puede activarlo con el comando:\n> » *${usedPrefix}bot on*`.trim()
 await m.reply(aviso)
 return
 }}
 if (m.text && user.banned && !isROwner) {
-const mensaje = `ꕥ Estas baneado/a, no puedes usar comandos en este bot!\n\n> ● *Razón ›* ${user.bannedReason}\n\n> ● Si este Bot es cuenta oficial y tienes evidencia que respalde que este mensaje es un error, puedes exponer tu caso con un moderador.`.trim()
+const mensaje = `💙 Estas baneado/a, no puedes usar comandos en este bot!\n\n> ● *Razón ›* ${user.bannedReason}\n\n> ● Si este Bot es cuenta oficial y tienes evidencia que respalde que este mensaje es un error, puedes exponer tu caso con un moderador.`.trim()
 if (!primaryBotId || primaryBotId === botId) {
 m.reply(mensaje)
 return
 }}}
+if (!isOwners && !m.chat.endsWith('g.us') && !/code|p|ping|qr|estado|status|infobot|botinfo|report|reportar|invite|join|logout|suggest|help|menu/gim.test(m.text)) return
 const adminMode = chat.modoadmin || false
 const wa = plugin.botAdmin || plugin.admin || plugin.group || plugin || noPrefix || pluginPrefix || m.text.slice(0, 1) === pluginPrefix || plugin.command
 if (adminMode && !isOwner && m.isGroup && !isAdmin && wa) return
@@ -363,24 +356,21 @@ console.log(m.message)
 
 global.dfail = (type, m, conn) => {
 const msg = {
-rowner: `*ᐛ👑* Está funcion solo puede ser usada por mi *creador.*
-> ✰ 𝐃𝐞𝐬𝐜𝐨𝐧𝐨𝐬𝐢𝐝𝐨 𝐗𝐳𝐬𝐲 (•̀ᴗ•́)و`, 
-owner: `*ᐛ👑* Está funcion solo puede ser usada por mi *creador.*
-> ✰ 𝐃𝐞𝐬𝐜𝐨𝐧𝐨𝐬𝐢𝐝𝐨 𝐗𝐳𝐬𝐲 (•̀ᴗ•́)و`, 
-mods: `*ᐛ👑* Está funcion solo puede ser usada por mi *creador.*
-> ✰ 𝐃𝐞𝐬𝐜𝐨𝐧𝐨𝐬𝐢𝐝𝐨 𝐗𝐳𝐬𝐲 (•̀ᴗ•́)و`, 
-premium: `*ᐛ👑* Está funcion solo puede ser usada por los ciudadanos amigos del rey.`, 
-group: `*ᐛ👑* Está funcion encantada solo puede ser usada en reinos de poder *(grupos).*`,
-private: `*ᐛ👑* Está funcion encantada solo puede ser ejecutada en mi casa *(chat privado).*`,
-admin: `*ᐛ👑* Está funcion encantada solo puede ser ejecutada por las personas más importantes del reino *(grupo).*`, 
-botAdmin: `*ᐛ👑* Está funcion encantada solo puede ser ejecutada si yo soy una de las princesas de este reino *(grupo).*`,
-restrict: `*ᐛ👑* Está funcion encantada fue desactivada por mi padre *(creador).*`
+rowner: `💙 El comando *${comando}* solo puede ser usado por los creadores del bot.`, 
+owner: `💙 El comando *${comando}* solo puede ser usado por los desarrolladores del bot.`, 
+mods: `💙 El comando *${comando}* solo puede ser usado por los moderadores del bot.`, 
+premium: `💙 El comando *${comando}* solo puede ser usado por los usuarios premium.`, 
+group: `💙 El comando *${comando}* solo puede ser usado en grupos.`,
+private: `💙 El comando *${comando}* solo puede ser usado al chat privado del bot.`,
+admin: `💙 El comando *${comando}* solo puede ser usado por los administradores del grupo.`, 
+botAdmin: `💙 Para ejecutar el comando *${comando}* debo ser administrador del grupo.`,
+restrict: `💙 Esta caracteristica está desactivada.`
 }[type]
-if (msg) return conn.reply(m.chat, msg, m, rcanal).then(_ => m.react('✖️'))
+if (msg) return conn.reply(m.chat, msg, m, global.rcanal).then(_ => m.react('✖️'))
 }
 let file = global.__filename(import.meta.url, true)
 watchFile(file, async () => {
 unwatchFile(file)
-console.log(chalk.magenta("Se actualizo 'handler.js'"))
+console.log(chalk.cyanBright("💙 Se actualizo 'handler.js'"))
 if (global.reloadHandler) console.log(await global.reloadHandler())
 })

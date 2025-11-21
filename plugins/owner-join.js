@@ -1,25 +1,25 @@
-let linkRegex = /chat.whatsapp.com\/([0-9A-Za-z]{20,24})( [0-9]{1,3})?/i
+let linkRegex = /https:\/\/chat\.whatsapp\.com\/([0-9A-Za-z]{20,24})/i;
 
-let handler = async (m, { conn, text, isOwner, usedPrefix, command }) => {
+let handler = async (m, { conn, text, isOwner }) => {
+    if (!text) return m.reply(`${emoji} Debes enviar una invitacion para que *${botname}* se una al grupo.`);
 
-        if (!text) return m.reply(`☆ Ingresa el enlace del Grupo.`)
-    let [_, code, expired] = text.match(linkRegex) || []
-    if (!code) return m.reply('☆ Enlace invalido.')
-    let res = await conn.groupAcceptInvite(code)
-    expired = Math.floor(Math.min(999, Math.max(1, isOwner ? isNumber(expired) ? parseInt(expired) : 0 : 3)))
-    m.reply(`☆ Me uní correctamente al Grupo *${res}${expired ? `* Durante *${expired}* días.` : ''}`)
-    let chats = global.db.data.chats[res]
-    if (!chats) chats = global.db.data.chats[res] = {}
-    if (expired) chats.expired = +new Date() + expired * 1000 * 60 * 60 * 24
-    let pp = 'https://files.catbox.moe/sjak3i.jpg'
-   await conn.sendMessage(res, { video: { url: pp }, gifPlayback: true, caption: 'Ya llego el mejor Bot de todo WhatsApp.', mentions: [m.sender] }, { quoted: estilo })
-}
-handler.help = ['join *<link> <días>*']
-handler.tags = ['owner']
+    let [_, code] = text.match(linkRegex) || [];
 
-handler.command = ['join', 'entrar'] 
-handler.owner = true
+    if (!code) return m.reply(`${emoji2} Enlace de invitación no válido.`);
 
-export default handler
+    if (isOwner) {
+        await conn.groupAcceptInvite(code)
+            .then(res => m.reply(`${emoji} Me he unido exitosamente al grupo.`))
+            .catch(err => m.reply(`${msm} Error al unirme al grupo.`));
+    } else {
+        let message = `${emoji} Invitación a un grupo:\n${text}\n\nPor: @${m.sender.split('@')[0]}`;
+        await conn.sendMessage(`${suittag}` + '@s.whatsapp.net', { text: message, mentions: [m.sender] }, { quoted: m });
+        m.reply(`${emoji} El link del grupo ha sido enviado, gracias por tu invitacion. ฅ^•ﻌ•^ฅ`);
+    }
+};
 
-const isNumber = (x) => (x = parseInt(x), typeof x === 'number' && !isNaN(x))
+handler.help = ['invite'];
+handler.tags = ['owner', 'tools'];
+handler.command = ['invite', 'join'];
+
+export default handler;

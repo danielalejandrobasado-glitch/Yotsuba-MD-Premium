@@ -1,67 +1,154 @@
-import { watchFile, unwatchFile } from "fs"
-import chalk from "chalk"
-import { fileURLToPath } from "url"
-import fs from "fs"
+import { watchFile, unwatchFile } from 'fs' 
+import chalk from 'chalk'
+import { fileURLToPath } from 'url'
+import fs from 'fs'
+import cheerio from 'cheerio'
+import fetch from 'node-fetch'
+import axios from 'axios'
+import moment from 'moment-timezone' 
 
-// ====
+//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
+
+
+global.botNumber = '' 
+
+//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
 global.owner = [
-"573235915041",
-"16503058299"
-]
+// <-- Número @s.whatsapp.net -->
+  ['51988514570', '(ㅎㅊDEPOOLㅊㅎ)', true],
+  ['51988514570', '(ㅎㅊDEPOOLㅊㅎ)', true],
+  
+// <-- Número @lid -->
+  ['141807421759536', '(ㅎㅊDEPOOLㅊㅎ)', true]
+];
 
-global.suittag = ["1829×××××××"] 
+//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
+
+global.mods = []
+global.suittag = ['51988514570'] 
 global.prems = []
 
-// ====
+//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.libreria = "Baileys Multi Device"
-global.vs = "^1.8.2|Latest"
-global.nameqr = "✯ Yotsuba Nakano ✰"
-global.sessions = "Session"
-global.jadi = "JadiBots"
-global.yukiJadibts = true
+global.libreria = 'Baileys'
+global.baileys = 'V 6.7.17' 
+global.vs = '2.2.5'
+global.nameqr = '🎵 Hatsune-Miku-MD 🎵'
+global.namebot = '💙 Ｈａｔｓｕｎｅ Ｍｉｋｕ Ｂｏｔ 💙'
+global.sessions = 'Sessions'
+global.jadi = 'JadiBots' 
 
-// ====
 
-global.botname = "Yotsuba Nakano"
-global.textbot = "✰ 𝐃𝐞𝐬𝐜𝐨𝐧𝐨𝐬𝐢𝐝𝐨 𝐗𝐳𝐬𝐲 (•̀ᴗ•́)و"
-global.dev = "✰ 𝐃𝐞𝐬𝐜𝐨𝐧𝐨𝐬𝐢𝐝𝐨 𝐗𝐳𝐬𝐲 (•̀ᴗ•́)و"
-global.author = "✰ 𝐃𝐞𝐬𝐜𝐨𝐧𝐨𝐬𝐢𝐝𝐨 𝐗𝐳𝐬𝐲 (•̀ᴗ•́)و"
-global.etiqueta = "✰ 𝐃𝐞𝐬𝐜𝐨𝐧𝐨𝐬𝐢𝐝𝐨 𝐗𝐳𝐬𝐲 (•̀ᴗ•́)و"
-global.currency = "Estrellas"
-global.emoji = "👑"
-global.banner = "https://files.catbox.moe/o2zoj6.png"
-global.icono = "https://files.catbox.moe/o2zoj6.png"
-global.catalogo = "https://files.catbox.moe/o2zoj6.png"
+//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-// ====
+global.packname = '🎤 𝙃𝘼𝙏𝙎𝙐𝙉𝙀 𝙈𝙄𝙆𝙐 𝘽𝙊𝙏 🎤'
+global.botname = '🄷🄰🅃🅂🅄🄽🄴 🄼🄸🄺🅄'
+global.wm = '🎵◟Hαƚsυɳҽ Mιƙυ◞🎵'
+global.author = '© (ㅎㅊDEPOOLㅊㅎ)'
+global.dev = '© 🄿🄾🅆🄴🅁🄴🄳 (ㅎㅊDEPOOLㅊㅎ)'
+global.textbot = '🎤Hatsune Miku, la Diva Virtual del Futuro🎤'
+global.etiqueta = '🎵(ㅎㅊDEPOOLㅊㅎ)🎵'
 
-global.group = "https://chat.whatsapp.com/Ht5ck9c1Eji2TRBXSkTHjY?mode=wwt"
-global.community = "https://whatsapp.com/channel/0029VbBkjlfLSmbWl3SH6737"
-global.channel = "https://whatsapp.com/channel/0029VbBkjlfLSmbWl3SH6737"
-global.github = "https://whatsapp.com/channel/0029VbBkjlfLSmbWl3SH6737"
-global.gmail = "https://whatsapp.com/channel/0029VbBkjlfLSmbWl3SH6737"
-global.ch = {
-ch1: "120363421036863665@newsletter"
+//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
+
+global.moneda = 'Cebollines 🌱'
+global.welcom1 = '💙 ¡Konnichiwa! Bienvenido al mundo virtual de Hatsune Miku! 💙 \n✨ Aquí podrás disfrutar de la magia musical ✨ \n🎶 Edita este mensaje con setwelcome 🎶'
+global.welcom2 = '💫 ¡Sayonara! Gracias por cantar con nosotros 🌟 \n🎵 ¡Esperamos verte pronto en el escenario virtual! 🎵 \n🎤 Edita este mensaje con setbye 🎤'
+global.banner = 'https://i.pinimg.com/736x/30/42/b8/3042b89ced13fefda4e75e3bc6dc2a57.jpg'
+global.avatar = 'https://i.pinimg.com/736x/30/42/b8/3042b89ced13fefda4e75e3bc6dc2a57.jpg'
+
+global.api = {
+  url: 'https://api.stellarwa.xyz',
+  key: 'Angelithixyz'
 }
 
-// ====
+global.playlistApiKey = 'f9e54e5c6amsh8b4dfc0bfb94abap19bab2jsne8b65338207e'
+
+
+global.apikey = 'adonix-key'
+global.APIKeys = {
+  'https://api.xteam.xyz': 'YOUR_XTEAM_KEY',
+  'https://api.lolhuman.xyz': 'API_KEY',
+  'https://api.betabotz.eu.org': 'API_KEY',
+  'https://mayapi.ooguy.com': 'may-f53d1d49'
+}
 
 global.APIs = {
-xyro: { url: "https://xyro.site", key: null },
-yupra: { url: "https://api.yupra.my.id", key: null },
-vreden: { url: "https://api.vreden.web.id", key: null },
-delirius: { url: "https://api.delirius.store", key: null },
-zenzxz: { url: "https://api.zenzxz.my.id", key: null },
-siputzx: { url: "https://api.siputzx.my.id", key: null }
+  ryzen: 'https://api.ryzendesu.vip',
+  xteam: 'https://api.xteam.xyz',
+  lol: 'https://api.lolhuman.xyz',
+  delirius: 'https://delirius-apiofc.vercel.app',
+  siputzx: 'https://api.siputzx.my.id',
+  mayapi: 'https://mayapi.ooguy.com'
 }
 
-// ====
+//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
+
+global.gp1 = 'https://chat.whatsapp.com/FQ78boTUpJ7Ge3oEtn8pRE?mode=ac_t'
+global.comunidad1 = 'https://chat.whatsapp.com/FQ78boTUpJ7Ge3oEtn8pRE?mode=ac_t'
+global.channel = 'https://www.whatsapp.com/channel/0029VajYamSIHphMAl3ABi1o'
+global.channel2 = 'https://www.whatsapp.com/channel/0029VajYamSIHphMAl3ABi1o'
+global.md = 'https://github.com/Brauliovh3/HATSUNE-MIKU'
+global.correo = 'brauliovh3@gmail.com'
+
+//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
+
+
+global.rcanal = { 
+  contextInfo: { 
+    isForwarded: true, 
+    forwardedNewsletterMessageInfo: { 
+      newsletterJid: "120363350523130615@newsletter", 
+      serverMessageId: 100, 
+      newsletterName: "💙🌱 Hatsune – Miku – Bot 🌱💙"
+    }
+  }
+}
+
+
+global.redes = 'https://www.whatsapp.com/channel/0029VajYamSIHphMAl3ABi1o'
+global.dev = '© 🄿🄾🅆🄴🅁🄴🄳 (ㅎㅊDEPOOLㅊㅎ)'
+
+global.emoji = '🌟'
+global.emoji2 = '🎵'
+global.emoji3 = '💖'
+
+//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
+
+global.catalogo = fs.readFileSync('./src/catalogo.jpg');
+global.estilo = { key: {  fromMe: false, participant: `0@s.whatsapp.net`, ...(false ? { remoteJid: "5219992095479-1625305606@g.us" } : {}) }, message: { orderMessage: { itemCount : -999999, status: 1, surface : 1, message: packname, orderTitle: 'Bang', thumbnail: catalogo, sellerJid: '0@s.whatsapp.net'}}}
+global.ch = {
+ch1: '120363401404146384@newsletter',
+}
+global.multiplier = 60
+
+//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
+
+global.cheerio = cheerio
+global.fs = fs
+global.fetch = fetch
+global.axios = axios
+global.moment = moment
+
+
+
+
+
+global.opts = {
+  ...global.opts,
+  autoread: true,  
+  queque: false 
+}
+
+
+ 
+
+//*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
 let file = fileURLToPath(import.meta.url)
 watchFile(file, () => {
-unwatchFile(file)
-console.log(chalk.redBright("Update 'settings.js'"))
-import(`${file}?update=${Date.now()}`)
+  unwatchFile(file)
+  console.log(chalk.redBright("Update 'settings.js'"))
+  import(`${file}?update=${Date.now()}`)
 })

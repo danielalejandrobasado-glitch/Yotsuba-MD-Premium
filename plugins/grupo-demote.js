@@ -1,36 +1,35 @@
-const handler = async (m, { conn }) => {
-  try {
-    // let who = m?.message?.extendedTextMessage?.contextInfo?.participant || m?.mentionedJid[0] || await m?.quoted?.sender;
-   let texto = await m.mentionedJid
-   let who = texto.length > 0 ? texto[0] : (m.quoted ? await m.quoted.sender : false)
-    if (!who) return m.reply('*ᐛ👑* Mensiona a un ciudadano de este mundo mágico para quitarle sus *privilegios altos.*');
+var handler = async (m, { conn, usedPrefix, command, text }) => {
+  let user
 
-    const groupMetadata = await conn.groupMetadata(m.chat);
-    const participant = groupMetadata.participants.find(participant => participant.jid === who);
-
-    if (!participant || !participant.admin) {
-    return conn.reply(m.chat, `🤨 *@${who.split('@')[0]}* no es administrador del grupo!`, m, { mentions: [who] });
+  if (m.mentionedJid && m.mentionedJid[0]) {
+    user = m.mentionedJid[0]
+  } else if (m.quoted) {
+    user = m.quoted.sender
+  } else if (text) {
+    let number = text.replace(/[^0-9]/g, '')
+    if (number.length >= 11 && number.length <= 13) {
+      user = number + '@s.whatsapp.net'
     }
-
-    if (who === groupMetadata.owner) {
-      return m.reply('🤨 ¿Quieres que te quite admin?');
-    }
-
-    if (who === conn.user.jid) {
-      return m.reply('😒 No puedo quitarme admin yo misma we');
-    }
-
-    await conn.groupParticipantsUpdate(m.chat, [who], 'demote');
-    await conn.reply(m.chat, `*@${who.split('@')[0]}* Ya no es admin`, m, { mentions: [who] });
-  } catch (e) {
-    await m.reply(`Error`);
   }
-};
 
-handler.help = ['demote'];
-handler.tags = ['grupo'];
-handler.command = ['demote'];
-handler.admin = true;
-handler.botAdmin = true;
+  if (!user) {
+    return conn.reply(m.chat, `${emoji} Debes mencionar o responder a un usuario para degradarlo de administrador.`, m)
+  }
 
-export default handler;
+  try {
+    await conn.groupParticipantsUpdate(m.chat, [user], 'demote')
+    conn.reply(m.chat, `${emoji2} Fue descartado como admin.`, m)
+  } catch (e) {
+    console.error(e)
+    conn.reply(m.chat, `${emoji} Error al degradar al usuario. Verifica que sea administrador.`, m)
+  }
+}
+handler.help = ['demote']
+handler.tags = ['grupo']
+handler.command = ['demote','quitarpija', 'degradar']
+handler.group = true
+handler.admin = true
+handler.botAdmin = true
+handler.fail = null
+
+export default handler

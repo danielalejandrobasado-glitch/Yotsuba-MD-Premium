@@ -1,23 +1,33 @@
-var handler = async (m, { conn, usedPrefix, command, text, groupMetadata, isAdmin }) => {
-let mentionedJid = await m.mentionedJid
-let user = mentionedJid && mentionedJid.length ? mentionedJid[0] : m.quoted && await m.quoted.sender ? await m.quoted.sender : null
-if (!user) return conn.reply(m.chat, `*ᐛ👑* Mensiona a un ciudadano de este mundo mágico para darle *privilegios altos.*`, m, rcanal)
-try {
-const groupInfo = await conn.groupMetadata(m.chat)
-const ownerGroup = groupInfo.owner || m.chat.split('-')[0] + '@s.whatsapp.net'
-if (user === ownerGroup || groupInfo.participants.some(p => p.id === user && p.admin))
-return conn.reply(m.chat, '*ᐛ👑* Está persona ya es admin', m, rcanal)
-await conn.groupParticipantsUpdate(m.chat, [user], 'promote')
-await conn.reply(m.chat, `*ᐛ👑* El ciudadano fue puesto como ayudante del rey *(creador del grupo)*.`, m, rcanal)
-} catch (e) {
-conn.reply(m.chat, `Error:\n\n✎ ${e.message}`, m)
-}}
+var handler = async (m, { conn, usedPrefix, command, text }) => {
+  let user
 
+  if (m.quoted) {
+    user = m.quoted.sender
+  } else if (m.mentionedJid && m.mentionedJid[0]) {
+    user = m.mentionedJid[0]
+  } else if (text) {
+    let number = text.replace(/[^0-9]/g, '')
+    if (number.length < 11 || number.length > 13) {
+      return conn.reply(m.chat, `${emoji} Número inválido. Debe tener entre 11 y 13 dígitos.`, m)
+    }
+    user = number + '@s.whatsapp.net'
+  } else {
+    return conn.reply(m.chat, `${emoji} Debes mencionar a un usuario, responder su mensaje o escribir su número.`, m)
+  }
+
+  try {
+    await conn.groupParticipantsUpdate(m.chat, [user], 'promote')
+    conn.reply(m.chat, `${done} Fue agregado como admin del grupo con éxito.`, m)
+  } catch (e) {
+    conn.reply(m.chat, `${emoji} Error al promover al usuario.`, m)
+  }
+}
 handler.help = ['promote']
 handler.tags = ['grupo']
-handler.command = ['promote', 'promover']
+handler.command = ['promote','darpija', 'promover']
 handler.group = true
 handler.admin = true
 handler.botAdmin = true
+handler.fail = null
 
 export default handler
