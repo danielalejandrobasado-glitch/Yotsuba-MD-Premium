@@ -1,8 +1,4 @@
-
-
-
 const toxicWords = {
- 
   basic: [
     'puto', 'puta', 'cabron', 'cabrón', 'pendejo', 'pendeja',
     'idiota', 'estupido', 'estúpido', 'imbecil', 'imbécil',
@@ -12,7 +8,6 @@ const toxicWords = {
     'chobolo dow'
   ],
   
-  
   severe: [
     'hijo de puta', 'hijueputa', 'la concha de tu madre',
     'vete a la mierda', 'chupa pija', 'come mierda',
@@ -20,12 +15,10 @@ const toxicWords = {
     'hdp', 'hdspm', 'ptm', 'ctm','zarnoso','sarnoso','sarnosa'
   ],
   
-  
   discriminatory: [
     'negro', 'negra', 'indio', 'india', 'chino', 'china',
     'sudaca', 'sudaco', 'pocho', 'pocha', 'gringo', 'gringa'
   ],
-  
   
   inappropriate: [
     'matar', 'morir', 'suicidio', 'suicidate', 'matate',
@@ -43,7 +36,6 @@ function normalizeText(text) {
     .trim()
 }
 
-
 function detectToxicContent(text) {
   const normalizedText = normalizeText(text)
   
@@ -54,7 +46,6 @@ function detectToxicContent(text) {
     category: ''
   }
   
- 
   for (const word of toxicWords.severe) {
     const normalizedWord = normalizeText(word)
     if (normalizedText.includes(normalizedWord)) {
@@ -64,7 +55,6 @@ function detectToxicContent(text) {
       detection.category = 'Lenguaje extremadamente ofensivo'
     }
   }
-  
   
   if (!detection.isToxic) {
     for (const word of toxicWords.discriminatory) {
@@ -77,7 +67,6 @@ function detectToxicContent(text) {
       }
     }
   }
-  
   
   if (!detection.isToxic) {
     for (const word of toxicWords.inappropriate) {
@@ -106,16 +95,15 @@ function detectToxicContent(text) {
   return detection
 }
 
-
 function getToxicMessage(userNumber, severity) {
   const messages = {
-    basic: `💙 ¡Ara ara! @${userNumber} ha sido advertido por usar lenguaje inapropiado! 💙🎤\n\n🎵 ¡En el mundo de Miku mantenemos un ambiente respetuoso!`,
+    basic: `⚽ ¡Tarjeta amarilla! @${userNumber} ha sido advertido por usar lenguaje inapropiado! 🏃‍♂️🔥\n\n🔵 ¡En Blue Lock mantenemos un ambiente de respeto y competitividad sana!`,
     
-    severe: `💙 ¡Ara ara! @${userNumber} ha sido expulsado del escenario virtual por lenguaje extremadamente ofensivo! 💙🎤\n\n🎵 ¡En el mundo de Miku no toleramos este tipo de comportamiento!`,
+    severe: `⚽ ¡Tarjeta roja! @${userNumber} ha sido expulsado del campo por lenguaje extremadamente ofensivo! 🏃‍♂️🔥\n\n🔵 ¡En Blue Lock no toleramos este tipo de comportamiento!`,
     
-    discriminatory: `💙 ¡Ara ara! @${userNumber} ha sido expulsado del escenario virtual por lenguaje discriminatorio! 💙🎤\n\n🎵 ¡En el mundo de Miku respetamos a todas las personas!`,
+    discriminatory: `⚽ ¡Expulsión inmediata! @${userNumber} ha sido expulsado por lenguaje discriminatorio! 🏃‍♂️🔥\n\n🔵 ¡En Blue Lock respetamos a todos los jugadores sin distinción!`,
     
-    inappropriate: `💙 ¡Ara ara! @${userNumber} ha sido advertido por contenido inapropiado! 💙🎤\n\n🎵 ¡En el mundo de Miku mantenemos conversaciones positivas!`
+    inappropriate: `⚽ ¡Falta técnica! @${userNumber} ha sido advertido por contenido inapropiado! 🏃‍♂️🔥\n\n🔵 ¡En Blue Lock mantenemos conversaciones enfocadas en el fútbol!`
   }
   
   return messages[severity] || messages.basic
@@ -123,11 +111,9 @@ function getToxicMessage(userNumber, severity) {
 
 export async function before(m, { conn, isAdmin, isBotAdmin }) {
   try {
-    
     if (!m || !m.text || m.text.trim() === '' || (m.isBaileys && m.fromMe) || !m.isGroup) {
       return true
     }
-    
     
     if (!global.db) global.db = { data: { chats: {} } }
     if (!global.db.data) global.db.data = { chats: {} }
@@ -136,11 +122,9 @@ export async function before(m, { conn, isAdmin, isBotAdmin }) {
     
     const chat = global.db.data.chats[m.chat]
     
-    
     if (chat.antitoxic === undefined) {
       chat.antitoxic = false
     }
-    
     
     if (!chat.antitoxic || isAdmin) {
       return true
@@ -150,18 +134,15 @@ export async function before(m, { conn, isAdmin, isBotAdmin }) {
     const toxicDetection = detectToxicContent(m.text)
     
     if (toxicDetection.isToxic) {
-      console.log(`💙 [ANTITOXIC] Moderando usuario ${userNumber} por ${toxicDetection.severity}`)
+      console.log(`⚽ [ANTITOXIC] Moderando usuario ${userNumber} por ${toxicDetection.severity}`)
       
       try {
-       
         if (isBotAdmin) {
           await conn.sendMessage(m.chat, { delete: m.key })
         }
         
-        
         const warningMessage = getToxicMessage(userNumber, toxicDetection.severity)
         await conn.reply(m.chat, warningMessage, m, { mentions: [m.sender] })
-        
         
         if (isBotAdmin && (toxicDetection.severity === 'severe' || toxicDetection.severity === 'discriminatory')) {
           await conn.groupParticipantsUpdate(m.chat, [m.sender], 'remove')
