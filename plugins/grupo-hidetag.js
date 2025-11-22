@@ -3,7 +3,7 @@ import * as fs from 'fs'
 
 var handler = async (m, { conn, text, participants, isOwner, isAdmin }) => {
 
-if (!m.quoted && !text) return conn.reply(m.chat, `🎤💙 Debes enviar un mensaje musical para notificar a todos los fanáticos del concierto ✨`, m)
+if (!m.quoted && !text) return conn.reply(m.chat, `⚽🔥 Debes enviar un mensaje para notificar a todos los jugadores del campo...`, m)
 
 try { 
   let users = participants.map(u => conn.decodeJid(u.id))
@@ -32,7 +32,7 @@ try {
   let isMedia = /image|video|sticker|audio/.test(mime)
   let more = String.fromCharCode(8206)
   let masss = more.repeat(850)
-  let htextos = `${text ? text : "💙 *¡¡¡Konnichiwa fanáticos!!!* 💙\n\n✨ Hay un anuncio especial en nuestro concierto virtual ✨"}`
+  let htextos = `${text ? text : "⚽ *¡¡¡ATENCIÓN JUGADORES!!!* 🔥\n\n🎯 Anuncio importante del campo de entrenamiento..."}`
   
   if ((isMedia && quoted.mtype === 'imageMessage') && htextos) {
     var mediax = await quoted.download?.()
@@ -42,7 +42,7 @@ try {
     conn.sendMessage(m.chat, { video: mediax, mentions: users, mimetype: 'video/mp4', caption: htextos }, { quoted: null })
   } else if ((isMedia && quoted.mtype === 'audioMessage') && htextos) {
     var mediax = await quoted.download?.()
-    conn.sendMessage(m.chat, { audio: mediax, mentions: users, mimetype: 'audio/mp4', fileName: `Hidetag.mp3` }, { quoted: null })
+    conn.sendMessage(m.chat, { audio: mediax, mentions: users, mimetype: 'audio/mp4', fileName: `AnuncioBlueLock.mp3` }, { quoted: null })
   } else if ((isMedia && quoted.mtype === 'stickerMessage') && htextos) {
     var mediax = await quoted.download?.()
     conn.sendMessage(m.chat, {sticker: mediax, mentions: users}, { quoted: null })
@@ -54,11 +54,10 @@ try {
   }
 }
 }
-handler.help = ['hidetag']
+handler.help = ['hidetag', 'anuncio']
 handler.tags = ['grupo']
-handler.command = ['hidetag', 'notificar', 'notify', 'tag']
+handler.command = ['hidetag', 'notificar', 'notify', 'tag', 'anuncio']
 handler.group = true
 handler.admin = true
 
 export default handler
-
