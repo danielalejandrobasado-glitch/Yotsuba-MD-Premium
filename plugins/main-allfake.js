@@ -86,17 +86,17 @@ global.safeFetch = async function safeFetch(url, options = {}) {
   }
 }
   
-global.creador = 'wa.me/51988514570'
+global.creador = 'wa.me/573244642273'
 global.ofcbot = `${conn.user.jid.split('@')[0]}`
-global.namechannel = '💙HATSUNE MIKU CHANNEL💙'
-global.namechannel2 = '💙HATSUNE MIKU CHANNEL💙'
-global.namegrupo = '💙HATSUNE MIKU CHANNEL💙'
-global.namecomu = '💙HATSUNE MIKU CHANNEL💙'
+global.namechannel = '⏤͟͞ू⃪𝐁𝕃𝐔𝔼 𝐋𝕆𝐂𝕂 𝐂𝕃𝐔𝔹 𑁯🩵ᰍ'
+global.namechannel2 = '𝕭𝖑𝖚𝖊 𝖑𝖔𝖈𝖐 𝕮𝖑𝖚𝖇'
+global.namegrupo = '𝕭𝖑𝖚𝖊 𝖑𝖔𝖈𝖐 𝕮𝖑𝖚𝖇'
+global.namecomu = '⏤͟͞ू⃪𝐁𝕃𝐔𝔼 𝐋𝕆𝐂𝕂 𝐂𝕃𝐔𝔹 𑁯🩵ᰍ'
 global.listo = '*Aquí tienes ฅ^•ﻌ•^ฅ*'
-global.fotoperfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://i.pinimg.com/736x/30/42/b8/3042b89ced13fefda4e75e3bc6dc2a57.jpg')
+global.fotoperfil = await conn.profilePictureUrl(m.sender, 'image').catch(_ => 'https://files.catbox.moe/h4vif1.jpeg')
 
-global.canalIdM = ["120363315369913363@newsletter", "120363315369913363@newsletter"]
-global.canalNombreM = ["💙HATSUNE MIKU CHANNEL💙"]
+global.canalIdM = ["120363420979328566@newsletter", "120363420979328566@newsletter"]
+global.canalNombreM = ["⏤͟͞ू⃪𝐁𝕃𝐔𝔼 𝐋𝕆𝐂𝕂 𝐂𝕃𝐔𝔹 𑁯🩵ᰍ"]
 global.channelRD = await getRandomChannel()
 
 global.d = new Date(new Date + 3600000)
@@ -112,23 +112,23 @@ global.done = '✅'
 global.error = '✖️'
 global.msm = '⚠︎'
 
-global.emoji = '💙'
-global.emoji2 = '🔌'
+global.emoji = '⚽️'
+global.emoji2 = '🔥'
 global.emoji3 = '💎'
-global.emoji4 = '🚂'
-global.emoji5 = '💙'
+global.emoji4 = '🏆'
+global.emoji5 = '⚽️'
 global.emojis = [emoji, emoji2, emoji3, emoji4].getRandom()
 
-global.wait = '💙 Espera un momento, soy lenta...';
-global.waitt = '💙 Espera un momento, soy lenta...';
-global.waittt = '💙 Espera un momento, soy lenta...';
-global.waitttt = '💙 Espera un momento, soy lenta...';
+global.wait = '⚽️ Espera un momento, soy lento...';
+global.waitt = '⚽️ Espera un momento, soy lento...';
+global.waittt = '⚽️ Espera un momento, soy lento...';
+global.waitttt = '⚽️ Espera un momento, soy lento...';
 
-var canal = 'https://whatsapp.com/channel/0029VajYamSIHphMAl3ABi1o'  
-var comunidad = 'https://chat.whatsapp.com/FQ78boTUpJ7Ge3oEtn8pRE?mode=ac_t'
+var canal = 'https://whatsapp.com/channel/0029Vb73g1r1NCrTbefbFQ2T'  
+var comunidad = 'https://chat.whatsapp.com/GPfABUmCuVN2Qu1d1PPcBY'
 var git = 'https://github.com/Brauliovh3'
 var github = 'https://github.com/Brauliovh3/HATSUNE-MIKU' 
-let correo = 'velasquezhuillcab@gmail.com'
+let correo = 'duartexv.ofc@gmail.com'
 global.redes = [canal, comunidad, git, github, correo].getRandom()
 
 let category = "imagen"
@@ -136,7 +136,7 @@ const db = './src/database/db.json'
 
 
 global.iconCache = global.iconCache || new Map()
-global.defaultIcon = 'https://i.pinimg.com/736x/30/42/b8/3042b89ced13fefda4e75e3bc6dc2a57.jpg'
+global.defaultIcon = 'https://files.catbox.moe/l8qiik.jpeg'
 
 
 async function loadIconOptimized() {
@@ -234,15 +234,15 @@ global.taguser = '@' + m.sender.split("@s.whatsapp.net")
 var more = String.fromCharCode(8206)
 global.readMore = more.repeat(850)
 
-global.packsticker = `💙━━━✦✧✦━━━💙
-🎤 Usuario: ${nombre}
-🤖 Bot: ${botname}
+global.packsticker = `🏆━━━✦✧✦━━━🏆
+❖  Usuario: ${nombre}
+✩  Bot: ${botname}
 📅 Fecha: ${fecha}
 ⏰ Hora: ${tiempo}
-💙━━━✦✧✦━━━💙`;
+🏆━━━✦✧✦━━━🏆`;
 
 global.packsticker2 = `
-💙━━━✦✧✦━━━💙
+🏆━━━✦✧✦━━━🏆
 
 ${dev}
 `;
