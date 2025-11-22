@@ -1,7 +1,6 @@
 /* 
-🎤💙 Código creado por Brauliovh3 
- https://github.com/Brauliovh3/HATSUNE-MIKU.git 
-💙 Hatsune Miku Bot - Virtual Concert Experience 🎵✨
+codigo creado por Brauliovh3
+virtual concert experience https://github.com/Brauliovh3/HATSUNE-MIKU
 */
 
 import fs from 'fs'
@@ -13,9 +12,9 @@ let handler = async (m, { conn, usedPrefix }) => {
     let name2 = conn.getName(m.sender)
 
     let str = m.mentionedJid.length > 0 || m.quoted 
-        ? `💙 \`${name2}\` está derramando lágrimas por \`${name || who}\` en el concierto virtual 😢` 
-        : `💙 \`${name2}\` está llorando en el mundo virtual de Miku 😢`
-    
+        ? `💢 **${name2}** está derramando lágrimas por **${name || who}**... ¿ACASO ERES DÉBIL? 🩸\n*Las lágrimas no ganan partidos, solo demuestran tu hambre de superación.* ⚽🔥` 
+        : `💢 **${name2}** está llorando en solitario... ¿BUSCAS LA EVOLUCIÓN?\n*Hasta las lágrimas deben servir para crecer. ¡CONVIÉRTELAS EN PODER!* 💧➡️💥`
+
     if (m.isGroup) {
         let pp = 'https://litter.catbox.moe/n0ew3er2iays5uwn.mp4'
         let pp2 = 'https://litter.catbox.moe/8pk0ge34o47ilw6a.mp4'
@@ -29,14 +28,21 @@ let handler = async (m, { conn, usedPrefix }) => {
         const videos = [pp, pp2, pp3, pp4, pp5, pp6, pp7, pp8]
         const video = videos[Math.floor(Math.random() * videos.length)]
         
-        conn.sendMessage(m.chat, { video: { url: video }, gifPlayback: true, caption: str, ptt: true, mentions: [who] }, { quoted: m })
+        // 🦅 AZUL CIELO: DONDE LOS DÉBILES LLORAN Y LOS FUERTES SE FORJAN
+        conn.sendMessage(m.chat, { 
+            video: { url: video }, 
+            gifPlayback: true, 
+            caption: str, 
+            ptt: true, 
+            mentions: [who] 
+        }, { quoted: m })
     }
 }
 
+// 🎌 SOLO AQUEL CON HAMBRE DE VICTORIA USA ESTOS COMANDOS
 handler.help = ['cry']
 handler.tags = ['anime']
 handler.command = ['cry', 'llorar', 'lagrimas']
 handler.group = true
 
 export default handler
-
