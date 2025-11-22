@@ -3,11 +3,11 @@ import fetch from 'node-fetch'
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
 
-    if (!text) return conn.reply(m.chat, `💙 Por favor, proporciona el nombre de una canción o artista.`, m, global.rcanal)
+    if (!text) return conn.reply(m.chat, `⚽ Por favor, proporciona el nombre de una canción o artista.`, m, global.rcanal)
 
     try {
         let songInfo = await spotifyxv(text)
-        if (!songInfo.length) throw `💙 No se encontró la canción.`
+        if (!songInfo.length) throw `⚽ No se encontró la canción.`
         let song = songInfo[0]
         const res = await fetch(`https://api.sylphy.xyz/download/spotify?url=${song.url}&apikey=sylph-96ccb836bc`)
 
@@ -17,7 +17,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
         const dlUrl = data?.data?.dl_url || data?.data?.dlUrl || data?.data?.url
         if (!dlUrl) throw "No se pudo obtener el enlace de descarga."
 
-        const info = `💙 Descargando *<${data.data.title || 'Desconocido'}>*\n\n> 💫 Artista » *${data.data.artist || 'Desconocido'}*\n> 💌 Album » *${data.data.album || 'Desconocido'}*\n> ⏲ Duracion » *${data.data.duration || 'N/A'}*\n> 🜸 Link » ${song.url}`
+        const info = `⚽ Descargando *<${data.data.title || 'Desconocido'}>*\n\n> 🔥 Artista » *${data.data.artist || 'Desconocido'}*\n> 🏃‍♂️ Album » *${data.data.album || 'Desconocido'}*\n> ⏲ Duración » *${data.data.duration || 'N/A'}*\n> ⚽ Link » ${song.url}`
 
         await conn.sendMessage(m.chat, { text: info, contextInfo: { forwardingScore: 9999999, isForwarded: false, 
         externalAdReply: {
@@ -89,6 +89,3 @@ function timestamp(time) {
     const seconds = Math.floor((time % 60000) / 1000)
     return minutes + ':' + (seconds < 10 ? '0' : '') + seconds
 }
-
-
-
