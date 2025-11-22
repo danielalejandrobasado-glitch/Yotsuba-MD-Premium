@@ -185,7 +185,7 @@ let handler = async (m, { conn, args, usedPrefix, command, isOwner }) => {
 
     
     statusText += `⏰ *Actualizado:* ${new Date().toLocaleString('es-ES')}\n`
-    statusText += `💙 *Hatsune Miku Bot* - SubBot Manager`
+    statusText += `⚽️ *Isagi Yoichi Bot* - SubBot Manager`
 
     
     const mikuImagePath = path.join(process.cwd(), 'src', 'miku-bots.jpg')
