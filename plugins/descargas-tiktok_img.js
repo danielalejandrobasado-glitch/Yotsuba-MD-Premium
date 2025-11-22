@@ -100,7 +100,7 @@ async function getImagesFromTikMate(tiktokUrl) {
       })
     }
   } catch (e) {
-    console.log('💙 Método TikMate falló:', e.message)
+    console.log('⚽ Método TikMate falló:', e.message)
   }
   return images
 }
@@ -167,7 +167,7 @@ async function getImagesFromSIGI(tiktokUrl) {
       }
       if (images.length > 0) break
     } catch (e) {
-      console.log(`💙🌱 User-agent ${i} falló:`, e.message)
+      console.log(`⚽ User-agent ${i} falló:`, e.message)
     }
   }
   return images
@@ -204,7 +204,7 @@ async function getImagesFromSSSTik(tiktokUrl) {
       }
     }
   } catch (e) {
-    console.log('💙 Método SSSTik falló:', e.message)
+    console.log('⚽ Método SSSTik falló:', e.message)
   }
   return images
 }
@@ -230,17 +230,17 @@ async function downloadImage(url, index = 0) {
     const ext = extFromContentType(ct)
     return {
       buffer: buf,
-      filename: `miku_tiktok_${index + 1}.${ext}`
+      filename: `isagi_tiktok_${index + 1}.${ext}`
     }
   } catch (e) {
-    console.log(`💙🌱 Miku: Error descargando imagen ${index + 1}: ${e.message}`)
+    console.log(`⚽ Error descargando imagen ${index + 1}: ${e.message}`)
     return null
   }
 }
 
 let handler = async (m, { conn, usedPrefix, command, args }) => {
-  if (!args[0]) return conn.reply(m.chat, `💙 Hola! Soy Hatsune Miku! Necesito un link de TikTok con imágenes para ayudarte ✨`, m, global.rcanal)
-  if (!/tiktok/i.test(args[0])) return conn.reply(m.chat, `💙 ¡Oye! Verifica que el link sea de TikTok, por favor 📱`, m, global.rcanal)
+  if (!args[0]) return conn.reply(m.chat, `⚽ Hola! Soy Isagi Yoichi! Necesito un link de TikTok con imágenes para ayudarte 🔥`, m, global.rcanal)
+  if (!/tiktok/i.test(args[0])) return conn.reply(m.chat, `⚽ ¡Oye! Verifica que el link sea de TikTok, por favor 📱`, m, global.rcanal)
 
   await m.react('⏳')
 
@@ -291,7 +291,7 @@ let handler = async (m, { conn, usedPrefix, command, args }) => {
     }
 
     const imageCaption =
-      `💙 Hatsune Miku Image Pack 💙\n\n` +
+      `⚽ Isagi Yoichi Image Pack ⚽\n\n` +
       `🖼️ ${images.length} imágenes de TikTok\n` +
       `👤 Por: ${videoData.author.nickname}\n\n` +
       `*"¡Aquí tienes todas tus imágenes!"*`
@@ -308,18 +308,18 @@ let handler = async (m, { conn, usedPrefix, command, args }) => {
       for (let i = 1; i < downloadedImages.length; i++) {
         await conn.sendFile(m.chat, downloadedImages[i].buffer, downloadedImages[i].filename, '', m, null, global.rcanal)
       }
-      await m.react('💙')
+      await m.react('⚽')
       return
     }
 
     throw new Error('No se pudieron descargar imágenes válidas')
   } catch (error) {
     console.error('Error:', error)
-    await m.react('💔')
+    await m.react('❌')
 
     const errorMsg =
-      `💔 Error 💔\n\n` +
-      `⚠️ Miku: "¡Oh no! No pude encontrar imágenes..."\n\n` +
+      `❌ Error ❌\n\n` +
+      `⚠️ Isagi: "¡Error en la jugada! No pude encontrar imágenes..."\n\n` +
       `🔍 Verifica que el link contenga imágenes (post tipo carrusel/foto)\n` +
       `📱 Que sea un link válido de TikTok\n` +
       `🔄 Intenta con otro enlace\n\n` +
@@ -335,4 +335,3 @@ handler.command = ['tiktokimg', 'tiktokimgs', 'ttimg', 'ttimgs']
 handler.register = true
 
 export default handler
-
