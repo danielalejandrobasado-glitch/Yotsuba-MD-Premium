@@ -8,7 +8,7 @@ let handler = async (m, { conn }) => {
     let q = m.quoted ? m.quoted : m;
     let mime = (q.msg || q).mimetype || '';
     if (!mime) {
-      return conn.reply(m.chat, `💙 Por favor, responde a un archivo válido (imagen, video, etc.).`, m, global.rcanal);
+      return conn.reply(m.chat, `⚽️ Por favor, responde a un archivo válido (imagen, video, etc.).`, m, global.rcanal);
     }
     await m.react(rwait);
 
@@ -23,7 +23,7 @@ let handler = async (m, { conn }) => {
 
     if (!/^https?:\/\/catbox\.moe\//.test(link)) throw "Fallo al subir a Catbox: " + link;
 
-    let txt = `*💙 C A T B O X - U P L O A D E R 💙*\n\n`;
+    let txt = `*⚽️ C A T B O X - U P L O A D E R ⚽️*\n\n`;
     txt += `*» Enlace* : ${link}\n`;
     txt += `*» Tamaño* : ${formatBytes(media.length)}\n`;
     txt += `*» Expiración* : ${isTele ? 'No expira' : 'Desconocido'}\n\n`;
