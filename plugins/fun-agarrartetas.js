@@ -5,7 +5,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     let who;
     if (m.isGroup) who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : false;
     else who = m.chat;
-    if (!db.data.chats[m.chat].nsfw && m.isGroup) return m.reply('💙 *¡Estos comandos están desactivados!*');
+    if (!db.data.chats[m.chat].nsfw && m.isGroup) return m.reply('⚽️ *¡Estos comandos están desactivados!*');
     if (!who) throw 'Etiqueta o menciona a alguien';
 
     let user = global.db.data.users[who];
@@ -13,7 +13,7 @@ let handler = async (m, { conn, usedPrefix }) => {
     let name2 = conn.getName(m.sender);
    // m.react('⏳');
     await conn.sendMessage(m.chat, { react: { text: '🔞', key: m.key } })
-    let str = `💙 ${name2} esta agarrando las tetas de ${name}`.trim();
+    let str = `⚽️ ${name2} esta agarrando las tetas de ${name}`.trim();
     if (m.isGroup){
     
     let pp = 'https://telegra.ph/file/82d32821f3b57b62359f2.mp4' 
