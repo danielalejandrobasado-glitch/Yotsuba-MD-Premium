@@ -23,6 +23,7 @@ return list[Math.floor(list.length * Math.random())]
 }
 
 global.frases = [
+    // Frases originales
     "Recuerda que no puedes fallar en ser tú mismo (Wayne Dyer)",
     "Siempre es temprano para rendirse (Jorge Álvarez Camacho)",
     "Sólo una cosa convierte en imposible un sueño: el miedo a fracasar (Paulo Coelho)",
@@ -59,6 +60,43 @@ global.frases = [
     "La única forma de hacer un gran trabajo es amar lo que haces. (Steve Jobs)",
     "La vida es un reto, enfréntalo.",
     "Si no tienes un plan, estás planeando fracasar.",
-    "La vida es una aventura, atrévete a vivirla."
-];
+    "La vida es una aventura, atrévete a vivirla.",
 
+    // Frases de Blue Lock
+    "El talento es la habilidad de cada uno de demostrar su fuerza (Jinpachi Ego - Blue Lock)",
+    "Conviértete en el que escoge y no el que espera para ser escogido (Yoichi Isagi - Blue Lock)",
+    "No importa cuánto intentes entender el corazón de las otras personas, no es posible cambiar a otros (Yoichi Isagi - Blue Lock)",
+    "Cuando juego, el balón no es mi amigo ni ninguna de esas tonterías. Soy el Rey (Shouei Barou - Blue Lock)",
+    "Desechad la idea de ganar por pura suerte y haceos con la victoria como una secuencia lógica (Jinpachi Ego - Blue Lock)",
+    "No voy a esperarte Isagi. Si me quieres, recupérame (Meguru Bachira - Blue Lock)",
+    "Si nunca aceptas la frustración de perder, no serás capaz de crecer (Seishiro Nagi - Blue Lock)",
+    "Soy lo suficientemente fuerte como para morir una vez y ser capaz de ponerme en pie de nuevo (Shouei Barou - Blue Lock)",
+    "Un delantero debe ser egoísta para marcar goles (Jinpachi Ego - Blue Lock)",
+    "La presión es lo que convierte el carbón en diamante (Jinpachi Ego - Blue Lock)",
+    "En el fútbol, solo existe el número 1 (Rin Itoshi - Blue Lock)",
+    "Confía en tus instintos, ellos te llevarán al gol (Yoichi Isagi - Blue Lock)",
+    "El fútbol es guerra, y en la guerra solo gana el más fuerte (Shouei Barou - Blue Lock)",
+    "La creatividad nace de la presión y la competencia (Jinpachi Ego - Blue Lock)",
+
+    // Frases de otros animes
+    "No vivas con falsedades ni miedos, porque terminarás odiándote a ti mismo (Naruto Uzumaki - Naruto)",
+    "A mí me da igual que los dioses existan o no, yo soy el amo de mi vida (Roronoa Zoro - One Piece)",
+    "Levántate y camina hacia adelante, tienes las piernas para hacerlo (Edward Elric - FullMetal Alchemist)",
+    "Cree en el tú... que cree en ti mismo! (Kamina - Tengen Toppa Gurren Lagann)",
+    "No mueras por tus amigos, vive por ellos (Erza Scarlet - Fairy Tail)",
+    "No importa cuán poderoso se vuelva, nunca intente hacer todo usted mismo (Itachi Uchiha - Naruto)",
+    "Dejaré los problemas de mañana al yo del mañana (Saitama - One-Punch Man)",
+    "¡No te rindas, no debes sentirte avergonzado por caer! (Shintaro Midorima - Kuroko's Basketball)",
+    "¡Un héroe es alguien que supera cada obstáculo que la vida pone en su camino! (All Might - My Hero Academia)",
+    "El trabajo duro es inútil para aquellos que no creen en sí mismos (Naruto Uzumaki - Naruto)",
+    "Los humanos son fuertes porque tienen el poder de cambiar (Saitama - One-Punch Man)",
+    "Si no arriesgas nada, no puedes cambiar nada (Armin Arlert - Attack on Titan)",
+    "La voluntad de seguir adelante es lo que separa a los ganadores de los perdedores (Roronoa Zoro - One Piece)",
+    "No importa cuántas veces caigas, lo importante es cuántas veces te levantes (Izuku Midoriya - My Hero Academia)",
+    "Las batallas se ganan con la mente, no solo con la fuerza (Shikamaru Nara - Naruto)",
+    "Un verdadero héroe siempre encuentra una forma de ayudar a los demás (All Might - My Hero Academia)",
+    "El poder de la amistad puede superar cualquier obstáculo (Monkey D. Luffy - One Piece)",
+    "Solo aquellos que han conocido la derrota pueden alcanzar la verdadera victoria (Kenshin Himura - Rurouni Kenshin)",
+    "El futuro no está escrito, lo creamos nosotros mismos (Son Goku - Dragon Ball)",
+    "Si no puedes ganar solo, entonces gana con los demás (Yoichi Isagi - Blue Lock)"
+];
