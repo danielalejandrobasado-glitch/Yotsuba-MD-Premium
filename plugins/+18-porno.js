@@ -2,7 +2,7 @@ import axios from 'axios';
 import fetch from 'node-fetch';
 const handler = async (m, {command, conn}) => {
   if (!db.data.chats[m.chat].nsfw && m.isGroup) {
-    return m.reply(`💙 El contenido *NSFW* está desactivado en este grupo.\n> Un administrador puede activarlo con el comando » *.enable nsfw*`);
+    return m.reply(`🔥 El contenido *NSFW* está desactivado en este grupo.\n> Un administrador puede activarlo con el comando » *.enable nsfw*`);
     }
 
   if (command == 'nsfwloli') {
