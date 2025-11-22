@@ -13,14 +13,14 @@ let handler = async (m, { conn, usedPrefix, text, args, command }) => {
     
     const nomorown = '51988514570' 
     const dev = 'Desarrollador del bot' 
-    const correo = 'velasquezhuillcab@gmail.com' 
-    const packname = '💙Hatsune Miku Bot💙' 
+    const correo = 'Duartexv.ofc@gmail.com 
+    const packname = '𝐼𝑠𝑎𝑔𝑖 𝑌𝑜𝑖𝑐ℎ𝑖 𝐵𝑜𝑡' 
     const md = 'https://github.com/Brauliovh3' 
     const global = { yt: 'https://youtube.com' } 
 
     await sendContactArray(conn, m.chat, [
-        [`${nomorown}`, `💙 Propietario`, `(ㅎㅊDEPOOLㅊㅎ)`, dev, correo, `BVH3 INDUSTRIES`, `${global.yt}`, bio],
-        [`${conn.user.jid.split('@')[0]}`, `Es Una Bot 💙`, `${packname}`, `📵 No Hacer Spam`, correo, `BVH3 INDUSTRIES`, md, biobot]
+        [`${nomorown}`, `⚽️ Propietario`, `𝐷𝑢𝑎𝑟𝑡𝑒𝑥𝑣`, dev, correo, `⏤͟͞ू⃪𝐁𝕃𝐔𝔼 𝐋𝕆𝐂𝕂 𝐂𝕃𝐔𝔹 𑁯🩵ᰍ`, `${global.yt}`, bio],
+        [`${conn.user.jid.split('@')[0]}`, `Es Un Bot ⚽️`, `${packname}`, `📵 No Hacer Spam`, correo, `⏤͟͞ू⃪𝐁𝕃𝐔𝔼 𝐋𝕆𝐂𝕂 𝐂𝕃𝐔𝔹 𑁯🩵ᰍ`, md, biobot]
     ], m)
 }
 
