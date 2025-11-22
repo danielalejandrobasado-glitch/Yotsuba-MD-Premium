@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 
 const handler = async (m, { conn, text, usedPrefix, command, args }) => {
     if (!args || !args[0]) {
-        return conn.reply(m.chat, `💙 Por favor, ingresa un enlace de Twitter/X.\n\n📝 *Ejemplo:* ${usedPrefix}${command} https://twitter.com/usuario/status/1234567890`, m, global.rcanal);
+        return conn.reply(m.chat, `⚽️ Por favor, ingresa un enlace de Twitter/X.\n\n📝 *Ejemplo:* ${usedPrefix}${command} https://twitter.com/usuario/status/1234567890`, m, global.rcanal);
     }
 
     
@@ -25,7 +25,7 @@ const handler = async (m, { conn, text, usedPrefix, command, args }) => {
         const { type, media, caption, author } = result;
         
         if (type === 'video' && media && media.length > 0) {
-            const videoCaption = `✅ *Video de Twitter/X descargado*\n\n👤 *Autor:* ${author || 'Desconocido'}\n📝 *Contenido:* ${caption || 'Sin descripción'}\n\n💙 *Descargado por Hatsune Miku Bot*`;
+            const videoCaption = `✅ *Video de Twitter/X descargado*\n\n👤 *Autor:* ${author || 'Desconocido'}\n📝 *Contenido:* ${caption || 'Sin descripción'}\n\n⚽️ *Descargado por Isagi Yoichi Bot*`;
 
             for (const video of media) {
                 if (video.url) {
@@ -38,7 +38,7 @@ const handler = async (m, { conn, text, usedPrefix, command, args }) => {
                 }
             }
         } else if (type === 'image' && media && media.length > 0) {
-            const imageCaption = `✅ *Imagen(es) de Twitter/X descargada(s)*\n\n👤 *Autor:* ${author || 'Desconocido'}\n📝 *Contenido:* ${caption || 'Sin descripción'}\n\n💙 *Descargado por Hatsune Miku Bot*`;
+            const imageCaption = `✅ *Imagen(es) de Twitter/X descargada(s)*\n\n👤 *Autor:* ${author || 'Desconocido'}\n📝 *Contenido:* ${caption || 'Sin descripción'}\n\n⚽️ *Descargado por Isagi Yoichi Bot*`;
 
             for (const image of media) {
                 if (image.url) {
