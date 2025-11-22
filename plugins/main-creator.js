@@ -11,7 +11,7 @@ let handler = async (m, { conn, usedPrefix, text, args, command }) => {
     let name = await conn.getName(who)
 
     
-    const nomorown = '51988514570' 
+    const nomorown = '573244642273' 
     const dev = 'Desarrollador del bot' 
     const correo = 'Duartexv.ofc@gmail.com 
     const packname = '𝐼𝑠𝑎𝑔𝑖 𝑌𝑜𝑖𝑐ℎ𝑖 𝐵𝑜𝑡' 
