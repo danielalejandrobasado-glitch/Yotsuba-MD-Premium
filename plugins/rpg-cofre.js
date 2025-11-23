@@ -27,7 +27,7 @@ const handler = async (m, { isPrems, conn }) => {
 
   if (Date.now() < timeToNextCofre) {
     const tiempoRestante = timeToNextCofre - Date.now();
-    const mensajeEspera = `💙 ¡Ya reclamaste tu cofre virtual de Miku hoy! 💙\n⏰️ Regresa en: *${msToTime(tiempoRestante)}* para obtener más tesoros musicales. ✨`;
+    const mensajeEspera = `⚽️ ¡Ya reclamaste tu cofre  de  hoy! ⚽️\n⏰️ Regresa en: *${msToTime(tiempoRestante)}* para obtener más tesoros . ✨`;
     await conn.sendMessage(m.chat, { text: mensajeEspera }, { quoted: m });
     return;
   }
@@ -46,23 +46,23 @@ const handler = async (m, { isPrems, conn }) => {
   user.lastcofre = Date.now();
 
   const texto = `
-╭━〔 💙 Cofre Musical de Miku 💙 〕⬣
-┃🎵 *¡Obtienes Tesoros Virtuales!*
-┃✨ ¡Felicidades, fanático de Miku!
+╭━〔 ⚽️ Cofre  de Isagi ⚽️ 〕⬣
+┃🔥 *¡Obtienes Tesoros !*
+┃✨ ¡Felicidades, delantero!
 ╰━━━━━━━━━━━━⬣
 
-╭━〔 🎶 Nuevos Recursos Musicales 🎶 〕⬣
-┃ *${dia} Monedas* 🎤
+╭━〔 🔥 Nuevos Recursos  🔥 〕⬣
+┃ *${dia} Monedas* 🏆
 ┃ *${tok} Tokens Virtuales* ⚜️
-┃ *${ai} Cristales de Sonido* 💎
-┃ *${expp} Experiencia Musical* ✨
+┃ *${ai} Cristales* 💎
+┃ *${expp} Experiencia* ✨
 ╰━━━━━━━━━━━━⬣`;
 
   try {
     await conn.sendMessage(m.chat, { text: texto }, { quoted: m });
   } catch (error) {
-    console.error('💙 Error al enviar el cofre:', error);
-    await conn.reply(m.chat, '💙 Ocurrió un error al enviar el cofre, pero tus recompensas fueron guardadas.', m, global.rcanal);
+    console.error('⚽️ Error al enviar el cofre:', error);
+    await conn.reply(m.chat, '⚽️ Ocurrió un error al enviar el cofre, pero tus recompensas fueron guardadas.', m, global.rcanal);
   }
 };
 
