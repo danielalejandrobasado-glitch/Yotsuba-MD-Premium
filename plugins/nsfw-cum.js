@@ -1,7 +1,7 @@
 let handler = async (m, { conn, usedPrefix }) => {
     
     if (m.isGroup && !db?.data?.chats?.[m.chat]?.nsfw) {
-        return m.reply(`💙 El contenido *NSFW* está desactivado en este grupo.\n> Un administrador puede activarlo con el comando » *#nsfw on*`);
+        return m.reply(`⚽️ El contenido *NSFW* está desactivado en este grupo.\n> Un administrador puede activarlo con el comando » *#nsfw on*`);
     }
     
     let name2 = conn.getName(m.sender) || 'Usuario';
