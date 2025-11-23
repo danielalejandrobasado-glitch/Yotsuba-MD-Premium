@@ -13,8 +13,8 @@ let handler = async (m, { conn, usedPrefix }) => {
     let name2 = conn.getName(m.sender)
 
     let str = m.mentionedJid.length > 0 || m.quoted 
-        ? `💙 \`${name2}\` le dio un tierno beso virtual a \`${name || who}\` como en el mundo mágico de Miku 🎵` 
-        : `💙 \`${name2}\` se envió amor a sí mismo/a en el concierto virtual 😘`
+        ? `⚽️ \`${name2}\` le dio un tierno beso virtual a \`${name || who}\`  ⚽️` 
+        : `⚽️ \`${name2}\` se envió amor a sí mismo/a 😘`
     
     if (m.isGroup) {
         let pp = 'https://media.tenor.com/_8oadF3hZwIAAAPo/kiss.mp4'
