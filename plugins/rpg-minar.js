@@ -15,12 +15,12 @@ let img = 'https://i.pinimg.com/736x/9e/f5/48/9ef548cb6dda11618d7a8ccecc5aed12.j
 let time = user.lastmiming + 600000;
 
 if (new Date() - user.lastmiming < 600000) {
-return conn.reply(m.chat, `💙 Debes esperar ${msToTime(time - new Date())} para volver a minar en el mundo virtual. 🎵`, m, global.rcanal);
+return conn.reply(m.chat, `⚽️ Debes esperar ${msToTime(time - new Date())} para volver a minar. 🔥`, m, global.rcanal);
 }
 
 let hasil = Math.floor(Math.random() * 1000);
 let info = `⛏️ *Te has adentrando en lo profundo de las cuevas*\n\n` +
-`> *💙 Obtuviste estos recursos*\n\n` +
+`> *⚽️ Obtuviste estos recursos*\n\n` +
 `✨ *Exp*: ${hasil}\n` +
 `💸 *${moneda}*: ${coin}\n` +
 `♦️ *Esmeralda*: ${emerald}\n` +
