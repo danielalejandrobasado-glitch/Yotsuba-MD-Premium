@@ -34,7 +34,7 @@ let handler = async (m, { conn, text, command }) => {
   users[senderId].exp += evento.exp;
   users[senderId].health += evento.health;
 
-  let img = 'https://qu.ax/QBPYn.png';
+  let img = 'https://files.catbox.moe/l8qiik.jpeg';
   let info = `╭━〔 Exploración en el Bosque〕\n` +
              `┃Misión: *${evento.nombre}*\n` +
              `┃Evento: ${evento.mensaje}\n` +
