@@ -26,7 +26,7 @@ export async function before(m, { conn, participants, groupMetadata }) {
       return true
     }
 
-    const canalUrl = 'https://whatsapp.com/channel/0029VajYamSIHphMAl3ABi1o'
+    const canalUrl = 'https://whatsapp.com/channel/0029Vb73g1r1NCrTbefbFQ2T'
     const groupSize = (participants || []).length
 
     const sendSingleWelcome = async (jid, text, user, quoted) => {
