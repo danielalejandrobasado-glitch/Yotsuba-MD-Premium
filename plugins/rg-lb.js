@@ -13,13 +13,13 @@ let handler = async (m, { conn, args, participants }) => {
     
     let text = `🎤 *RANKING HATSUNE MIKU* 🎤
 
-💙 *Top de Usuarios con más XP* 🌱
+⚽️ *Top de Usuarios con más XP* 🔥
 
 `;
 
     text += sortedLevel.slice(startIndex, endIndex).map(({ jid, exp, level }, i) => {
         let position = startIndex + i + 1;
-        let medal = position === 1 ? '🥇' : position === 2 ? '🥈' : position === 3 ? '🥉' : '💙';
+        let medal = position === 1 ? '🥇' : position === 2 ? '🥈' : position === 3 ? '🥉' : '⚽️';
         let userName = participants.some(p => jid === p.jid) ? conn.getName(jid) : jid.split`@`[0];
         
         return `${medal} *#${position}* • ${userName}
@@ -33,7 +33,7 @@ let handler = async (m, { conn, args, participants }) => {
         text += `\n💡 Siguiente: *#lb ${page + 1}*`;
     }
     
-    text += `\n\n🎵 *Hatsune Miku Bot* 💙`;
+    text += `\n\n🔥 *Isagi Yoichi Bot* ⚽️`;
 
     await conn.reply(m.chat, text.trim(), m, { mentions: conn.parseMention(text) });
 }
