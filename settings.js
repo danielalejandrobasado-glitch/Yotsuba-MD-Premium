@@ -16,17 +16,17 @@ global.botNumber = ''
 
 global.owner = [
 // <-- Número @s.whatsapp.net -->
-  ['51988514570', '(ㅎㅊDEPOOLㅊㅎ)', true],
-  ['51988514570', '(ㅎㅊDEPOOLㅊㅎ)', true],
+  ['573244642273', 'DuarteXV, true],
+  ['573244642273', 'DuarteXV, true],
   
 // <-- Número @lid -->
-  ['141807421759536', '(ㅎㅊDEPOOLㅊㅎ)', true]
+  ['141807421759536', 'DuarteXV, true]
 ];
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
 global.mods = []
-global.suittag = ['51988514570'] 
+global.suittag = ['573244642273'] 
 global.prems = []
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
@@ -34,29 +34,29 @@ global.prems = []
 global.libreria = 'Baileys'
 global.baileys = 'V 6.7.17' 
 global.vs = '2.2.5'
-global.nameqr = '🎵 Hatsune-Miku-MD 🎵'
-global.namebot = '💙 Ｈａｔｓｕｎｅ Ｍｉｋｕ Ｂｏｔ 💙'
+global.nameqr = '⚽️ Isagi-Yoichi-MD 🎵'
+global.namebot = 'I S A G I Y O I C H I B O T'
 global.sessions = 'Sessions'
 global.jadi = 'JadiBots' 
 
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.packname = '🎤 𝙃𝘼𝙏𝙎𝙐𝙉𝙀 𝙈𝙄𝙆𝙐 𝘽𝙊𝙏 🎤'
-global.botname = '🄷🄰🅃🅂🅄🄽🄴 🄼🄸🄺🅄'
-global.wm = '🎵◟Hαƚsυɳҽ Mιƙυ◞🎵'
-global.author = '© (ㅎㅊDEPOOLㅊㅎ)'
-global.dev = '© 🄿🄾🅆🄴🅁🄴🄳 (ㅎㅊDEPOOLㅊㅎ)'
-global.textbot = '🎤Hatsune Miku, la Diva Virtual del Futuro🎤'
-global.etiqueta = '🎵(ㅎㅊDEPOOLㅊㅎ)🎵'
+global.packname = '⚽️ 𝐼𝑆𝐴𝐺𝐼 𝑌𝑂𝐼𝐶𝐻𝐼 𝐵𝑂𝑇 ⚽️'
+global.botname = '𝙄𝙎𝘼𝙂𝙄 𝙔𝙊𝙄𝘾𝙃𝙄'
+global.wm = '⚽️◟𝓘𝓼𝓪𝓰𝓲 𝓨𝓸𝓲𝓬𝓱𝓲◞⚽️'
+global.author = '© DuarteXV'
+global.dev = '© 🄿🄾🅆🄴🅁🄴🄳 DuarteXV'
+global.textbot = '🏆Isagi Yoichi, Un delantero que transforma cada partido en una partida de ajedrez con su mente letal. ♟️⚽🏆'
+global.etiqueta = '⚽️DuarteXV⚽️'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.moneda = 'Cebollines 🌱'
-global.welcom1 = '💙 ¡Konnichiwa! Bienvenido al mundo virtual de Hatsune Miku! 💙 \n✨ Aquí podrás disfrutar de la magia musical ✨ \n🎶 Edita este mensaje con setwelcome 🎶'
-global.welcom2 = '💫 ¡Sayonara! Gracias por cantar con nosotros 🌟 \n🎵 ¡Esperamos verte pronto en el escenario virtual! 🎵 \n🎤 Edita este mensaje con setbye 🎤'
-global.banner = 'https://i.pinimg.com/736x/30/42/b8/3042b89ced13fefda4e75e3bc6dc2a57.jpg'
-global.avatar = 'https://i.pinimg.com/736x/30/42/b8/3042b89ced13fefda4e75e3bc6dc2a57.jpg'
+global.moneda = 'Blue-Lock-Points 
+global.welcom1 = '! Bienvenido al campo! ⚽️ \n✨ Soy Isagi Yoichi ✨ \n⚽️ Edita este mensaje con setwelcome ⚽️'
+global.welcom2 = '💫 ¡Hasta la próxima! Gracias por jugar con nosotros 🌟 \n⚽️ ¡Esperamos verte pronto en el campo! ⚽️ \n🔥 Edita este mensaje con setbye 🔥'
+global.banner = 'https://files.catbox.moe/l8qiik.jpeg'
+global.avatar = 'https://files.catbox.moe/h4vif1.jpeg'
 
 global.api = {
   url: 'https://api.stellarwa.xyz',
@@ -85,12 +85,12 @@ global.APIs = {
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.gp1 = 'https://chat.whatsapp.com/FQ78boTUpJ7Ge3oEtn8pRE?mode=ac_t'
-global.comunidad1 = 'https://chat.whatsapp.com/FQ78boTUpJ7Ge3oEtn8pRE?mode=ac_t'
-global.channel = 'https://www.whatsapp.com/channel/0029VajYamSIHphMAl3ABi1o'
-global.channel2 = 'https://www.whatsapp.com/channel/0029VajYamSIHphMAl3ABi1o'
+global.gp1 = 'https://chat.whatsapp.com/B9YHlQE1XVGDhyKhnSIrX2?mode=ems_copy_t'
+global.comunidad1 = 'https://chat.whatsapp.com/GPfABUmCuVN2Qu1d1PPcBY'
+global.channel = 'https://whatsapp.com/channel/0029Vb73g1r1NCrTbefbFQ2T'
+global.channel2 = 'https://whatsapp.com/channel/0029VbBIilK7tkj7TROe690d'
 global.md = 'https://github.com/Brauliovh3/HATSUNE-MIKU'
-global.correo = 'brauliovh3@gmail.com'
+global.correo = 'duartexv.ofc@gmail.com 
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
@@ -101,25 +101,25 @@ global.rcanal = {
     forwardedNewsletterMessageInfo: { 
       newsletterJid: "120363350523130615@newsletter", 
       serverMessageId: 100, 
-      newsletterName: "💙🌱 Hatsune – Miku – Bot 🌱💙"
+      newsletterName: "⚽️🔥Isagi-Yoichi-Bot ⚽️🔥"
     }
   }
 }
 
 
-global.redes = 'https://www.whatsapp.com/channel/0029VajYamSIHphMAl3ABi1o'
-global.dev = '© 🄿🄾🅆🄴🅁🄴🄳 (ㅎㅊDEPOOLㅊㅎ)'
+global.redes = 'https://whatsapp.com/channel/0029Vb73g1r1NCrTbefbFQ2T'
+global.dev = '© 🄿🄾🅆🄴🅁🄴🄳 DuarteXV'
 
-global.emoji = '🌟'
-global.emoji2 = '🎵'
-global.emoji3 = '💖'
+global.emoji = '⚽️'
+global.emoji2 = '🏆'
+global.emoji3 = '🔥'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
 global.catalogo = fs.readFileSync('./src/catalogo.jpg');
 global.estilo = { key: {  fromMe: false, participant: `0@s.whatsapp.net`, ...(false ? { remoteJid: "5219992095479-1625305606@g.us" } : {}) }, message: { orderMessage: { itemCount : -999999, status: 1, surface : 1, message: packname, orderTitle: 'Bang', thumbnail: catalogo, sellerJid: '0@s.whatsapp.net'}}}
 global.ch = {
-ch1: '120363401404146384@newsletter',
+ch1: '120363420979328566@newsletter',
 }
 global.multiplier = 60
 
