@@ -3,9 +3,9 @@ let handler = async (m, { conn, usedPrefix }) => {
   let username = conn.getName(who)
   
   let str = `
-╭━━━〔 💙 HATSUNE MIKU 💙 〕━━━╮
+╭━━━〔 ⚽️ ISAGI YOICHI ⚽️ 〕━━━╮
 │ 
-│  ミ🎵 ¡Hola! ${username} 🎵彡
+│  ミ🔥 ¡Hola! ${username} 🔥彡
 │ 
 │ ═══════════════════════
 │  🎤 MENÚ DE AUDIOS 🎤
@@ -144,11 +144,11 @@ let handler = async (m, { conn, usedPrefix }) => {
 ╰━━━━━━━━━━━━━━━━━━━━━╯
 
 ╭═══• ೋ💙ೋ •═══╮
-   🎵 HATSUNE MIKU 🎵
+   ⚽️ ISAGI YOICHI ⚽️
    0:40 ━❍──── -8:39
    ↻  ⊲  Ⅱ  ⊳  ↺
    VOL: ▁▂▃▄▅▆▇ 100%
-╰═══• ೋ💙ೋ •═══╯`.trim()
+╰═══• ೋ🔥ೋ •═══╯`.trim()
 
   let mentionedJid = [who]
   conn.sendMessage(m.chat, { 
