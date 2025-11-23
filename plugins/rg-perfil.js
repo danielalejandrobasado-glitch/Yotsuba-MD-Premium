@@ -23,10 +23,10 @@ let handler = async (m, { conn, args }) => {
     let coins = user.coin || 0;
     let bankCoins = user.bank || 0;
 
-    let perfil = await conn.profilePictureUrl(userId, 'image').catch(_ => 'https://w7.pngwing.com/pngs/492/82/png-transparent-hatsune-miku-vocaloid-anime-animation-hatsune-miku-blue-fictional-characters-black-hair.png');
+    let perfil = await conn.profilePictureUrl(userId, 'image').catch(_ => 'https://files.catbox.moe/svtosy.mp4');
 
     let profileText = `
-💙 *Perfil* ◢@${userId.split('@')[0]}◤
+⚽️ *Perfil* ◢@${userId.split('@')[0]}◤
 ${description}
 
 🐱‍🏍 Edad » ${user.age || 'Desconocida'}
@@ -48,7 +48,7 @@ ${description}
         contextInfo: {
             mentionedJid: [userId],
             externalAdReply: {
-                title: '💙 Perfil de Usuario 💙',
+                title: '⚽️ Perfil de Usuario ⚽️',
                 body: dev,
                 thumbnailUrl: perfil,
                 mediaType: 1,
