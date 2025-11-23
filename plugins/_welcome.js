@@ -44,7 +44,7 @@ export async function before(m, { conn, participants, groupMetadata }) {
 
         if (!ppBuffer) {
           try {
-            const defaultResponse = await fetch('https://i.pinimg.com/736x/30/42/b8/3042b89ced13fefda4e75e3bc6dc2a57.jpg')
+            const defaultResponse = await fetch('https://files.catbox.moe/l8qiik.jpeg')
             ppBuffer = await defaultResponse.buffer()
           } catch (e) {
             ppBuffer = null
