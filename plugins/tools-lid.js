@@ -5,11 +5,11 @@ const handler = async (m, { conn, text, participants, args, usedPrefix, command 
         await m.react('🔍')
 
         // Verificar que sea un grupo
-        if (!m.isGroup) return m.reply('💙 *Este comando solo funciona en grupos*')
+        if (!m.isGroup) return m.reply('⚽️ *Este comando solo funciona en grupos*')
 
         // Verificar que se haya proporcionado un número
         if (!text || !args[0]) {
-            return m.reply(`💙 *Uso correcto:*\n${usedPrefix + command} <numero>\n\n*Ejemplos:*\n• ${usedPrefix + command} 1234567890\n• ${usedPrefix + command} +1234567890\n• ${usedPrefix + command} 521234567890`)
+            return m.reply(`⚽️ *Uso correcto:*\n${usedPrefix + command} <numero>\n\n*Ejemplos:*\n• ${usedPrefix + command} 1234567890\n• ${usedPrefix + command} +1234567890\n• ${usedPrefix + command} 521234567890`)
         }
 
         // Limpiar el número (remover espacios, guiones, paréntesis, etc.)
@@ -28,7 +28,7 @@ const handler = async (m, { conn, text, participants, args, usedPrefix, command 
         const participant = participants.find(p => areJidsSameUser(p.id, targetJid))
 
         if (!participant) {
-            return m.reply(`💙 *El numero ${phoneNumber} no se encuentra en este grupo*\n\n*LID buscado:* ${phoneNumber}`)
+            return m.reply(`⚽️ *El numero ${phoneNumber} no se encuentra en este grupo*\n\n*LID buscado:* ${phoneNumber}`)
         }
 
         // Obtener información adicional del participante
@@ -64,7 +64,7 @@ const handler = async (m, { conn, text, participants, args, usedPrefix, command 
 🏷️ *Estado:* ${adminStatus}
 📅 *En grupo desde:* ${participant.joined ? new Date(participant.joined * 1000).toLocaleDateString() : 'Fecha desconocida'}
 
-💙 *LID listo para copiar:*
+⚽️ *LID listo para copiar:*
 \`${numberOnly}\`
 
 📋 *Formato para listas:*
@@ -79,7 +79,7 @@ const handler = async (m, { conn, text, participants, args, usedPrefix, command 
     } catch (error) {
         console.error('Error en getlid:', error)
         await m.react('❌')
-        return m.reply(`💙 *Error al obtener informacion:*\n${error.message}`)
+        return m.reply(`⚽️ *Error al obtener informacion:*\n${error.message}`)
     }
 }
 
