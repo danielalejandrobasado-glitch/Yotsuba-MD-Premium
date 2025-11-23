@@ -15,7 +15,7 @@ let handler = async (m, { conn, text }) => {
         text = m.quoted.text
     } else if (!text) {
         return conn.sendMessage(m.chat, {
-            text: '💙 Por favor, responde a un mensaje o ingresa un texto para crear el Sticker.'
+            text: '⚽️ Por favor, responde a un mensaje o ingresa un texto para crear el Sticker.'
         }, { quoted: m })
     }
 
