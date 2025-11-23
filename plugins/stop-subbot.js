@@ -12,7 +12,7 @@ async function stopSubBot(userId) {
     const conn = global.conns[connIndex]
     
     try {
-        console.log(`🎵 Deteniendo SubBot ${userId} manualmente...`)
+        console.log(`⚽️ Deteniendo SubBot ${userId} manualmente...`)
         
         
         if (conn.ws && conn.ws.socket) {
@@ -35,11 +35,11 @@ async function stopSubBot(userId) {
        
         global.conns.splice(connIndex, 1)
         
-        console.log(`🎵 SubBot ${userId} detenido exitosamente`)
+        console.log(`⚽️ SubBot ${userId} detenido exitosamente`)
         return true
         
     } catch (error) {
-        console.error(`🎵 Error deteniendo SubBot ${userId}:`, error)
+        console.error(`⚽️Error deteniendo SubBot ${userId}:`, error)
         return false
     }
 }
@@ -49,14 +49,14 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     let id = `${who.split`@`[0]}`
     
     if (!global.conns || global.conns.length === 0) {
-        return m.reply('🎵 No tienes ningún SubBot activo para desconectar.')
+        return m.reply('⚽️ No tienes ningún SubBot activo para desconectar.')
     }
     
     
     const userSubBot = global.conns.find(c => c && c.user && c.user.jid && c.user.jid.split('@')[0] === id)
     
     if (!userSubBot) {
-        return m.reply('🎵 No tienes ningún SubBot activo para desconectar.')
+        return m.reply('⚽️ No tienes ningún SubBot activo para desconectar.')
     }
     
     const isConnected = userSubBot.ws && userSubBot.ws.socket && userSubBot.ws.socket.readyState === 1
@@ -67,13 +67,13 @@ let handler = async (m, { conn, usedPrefix, command }) => {
         if (connIndex !== -1) {
             global.conns.splice(connIndex, 1)
         }
-        return m.reply('🎵 Tu SubBot ya estaba desconectado. Se limpió la sesión.')
+        return m.reply('⚽️ Tu SubBot ya estaba desconectado. Se limpió la sesión.')
     }
     
     try {
         const success = await stopSubBot(id)
         if (success) {
-            m.reply('🎤 Tu SubBot se ha desconectado exitosamente del concierto de Miku.\n\n💫 Usa `' + usedPrefix + 'qr` o `' + usedPrefix + 'code` para reconectar.')
+            m.reply('🔥 Tu SubBot se ha desconectado exitosamente.\n\n💫 Usa `' + usedPrefix + 'qr` o `' + usedPrefix + 'code` para reconectar.')
         } else {
             m.reply('⚠️ Hubo un problema al desconectar tu Sub-Bot.')
         }
