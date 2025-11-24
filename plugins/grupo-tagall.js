@@ -11,7 +11,7 @@ const handler = async (m, { isOwner, isAdmin, conn, text, participants, args, co
 
   const pesan = args.join` `;
   const oi = `*⚽️ ISAGI YOICHI :* ${pesan} ⚽️`;
-  let teks = `*🏆  LLAMADA EGOISTA A TODOS LOS DELANTEROS  🔥*\n  *⚽️ PARA ${participants.length} MIEMBROS DEL CLUB ⚽️* ⚽️\n\n ${oi}\n\n╭  ┄ 𝅄 ۪꒰ \`⡞᪲=͟͟͞${botname} ≼᳞ׄ\` ꒱ ۟ 𝅄 ┄\n`;
+  let teks = `*🏆  LLAMADA EGOISTA A TODOS LOS DELANTEROS  🔥*\n  *⚽️ PARA ${participants.length} MIEMBROS DEL CLUB ⚽️* \n\n ${oi}\n\n╭  ┄ 𝅄 ۪꒰ \`⡞᪲=͟͟͞${botname} ≼᳞ׄ\` ꒱ ۟ 𝅄 ┄\n`;
   for (const mem of participants) {
     teks += `┊🏆 @${mem.id.split('@')[0]}\n`;
   }
