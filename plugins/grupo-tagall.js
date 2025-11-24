@@ -10,10 +10,10 @@ const handler = async (m, { isOwner, isAdmin, conn, text, participants, args, co
   }
 
   const pesan = args.join` `;
-  const oi = `*💙 ANUNCIO DE MIKU :* ${pesan} 💙`;
-  let teks = `*🎵  LLAMADA VIRTUAL A TODOS LOS FANÁTICOS  🎵*\n  *🌟 PARA ${participants.length} MIEMBROS DEL CONCIERTO 🌟* 🎤\n\n ${oi}\n\n╭  ┄ 𝅄 ۪꒰ \`⡞᪲=͟͟͞${botname} ≼᳞ׄ\` ꒱ ۟ 𝅄 ┄\n`;
+  const oi = `*⚽️ ISAGI YOICHI :* ${pesan} ⚽️`;
+  let teks = `*🏆  LLAMADA EGOISTA A TODOS LOS DELANTEROS  🔥*\n  *🌟 PARA ${participants.length} MIEMBROS DEL CLUB 🌟* ⚽️\n\n ${oi}\n\n╭  ┄ 𝅄 ۪꒰ \`⡞᪲=͟͟͞${botname} ≼᳞ׄ\` ꒱ ۟ 𝅄 ┄\n`;
   for (const mem of participants) {
-    teks += `┊🎵 @${mem.id.split('@')[0]}\n`;
+    teks += `┊🏆 @${mem.id.split('@')[0]}\n`;
   }
   teks += `╰⸼ ┄ ┄ ┄ ─  ꒰  ׅ୭ *${vs}* ୧ ׅ ꒱  ┄  ─ ┄ ⸼`;
 
