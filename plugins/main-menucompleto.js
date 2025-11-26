@@ -9,13 +9,13 @@ let totalCommands = Object.values(global.plugins).filter((v) => v.help && v.tags
 
 
 let txt = `╭━━━━━━━━━━━━━━━━━━━╮
-┃ 🎤 *HATSUNE MIKU BOT* 🎤 ┃
+┃ ⚽️ *ISAGI YOICHI BOT* ⚽️ ┃
 ╰━━━━━━━━━━━━━━━━━━━╯
 
-🌸 ¡Konnichiwa, @${userId.split('@')[0]}! 🌸
+🔥 ¡Konnichiwa, @${userId.split('@')[0]}! 🔥
 
 ┏━━━━━━━━━━━━━━━━┓
-┃ 💙 *Estado:* ${(conn.user.jid == global.conn.user.jid ? 'Principal ⚡️' : 'Sub-Bot 🔌')}
+┃ 🏆 *Estado:* ${(conn.user.jid == global.conn.user.jid ? 'Principal ⚡️' : 'Sub-Bot 🔌')}
 ┃ ⏰ *Activo:* ${uptime}
 ┃ 👥 *Usuarios:* ${totalreg}
 ┃ 📊 *Comandos:* ${totalCommands}
@@ -257,7 +257,7 @@ let txt = `╭━━━━━━━━━━━━━━━━━━━╮
 ╰ 🤖 .editautoresponder - Config auto respuesta
 
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃💙 *¿Tu propio bot?* Usa .code            ┃
+┃⚽️ *¿Tu propio bot?* Usa .code            ┃
 ┃✨ Escribe el comando para usarlo    ┃
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━┛`.trim()
 
