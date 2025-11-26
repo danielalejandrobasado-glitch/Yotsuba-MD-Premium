@@ -83,7 +83,7 @@ export async function before(m, { conn, participants, groupMetadata }) {
 
 🔥Somos *${groupSize}* miembros
 
-⚽️${global.welcom1 || 'La música nos une'}
+⚽️${global.welcom1 || 'El futbol nos une'}
 
 📝Ayuda: *#help*
 
