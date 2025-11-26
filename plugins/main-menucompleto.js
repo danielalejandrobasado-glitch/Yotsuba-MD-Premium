@@ -12,7 +12,7 @@ let txt = `╭━━━━━━━━━━━━━━━━━━━╮
 ┃ ⚽️ *ISAGI YOICHI BOT* ⚽️ ┃
 ╰━━━━━━━━━━━━━━━━━━━╯
 
-🔥 ¡Konnichiwa, @${userId.split('@')[0]}! 🔥
+🔥 ¡EGO SISTEM, @${userId.split('@')[0]}! 🔥
 
 ┏━━━━━━━━━━━━━━━━┓
 ┃ 🏆 *Estado:* ${(conn.user.jid == global.conn.user.jid ? 'Principal ⚡️' : 'Sub-Bot 🔌')}
