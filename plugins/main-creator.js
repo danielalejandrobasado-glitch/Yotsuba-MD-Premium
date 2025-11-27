@@ -1,13 +1,8 @@
 import PhoneNumber from 'awesome-phonenumber';
 
 let handler = async (m, { conn }) => {
-    // Reaccionar al mensaje
     await m.react('👋');
-
-    // Número del propietario
-    let ownerNumber = global.owner[0].replace(/[^0-9]/g, '');
-
-    // Crear vCard mínima
+    let ownerNumber = '573244642273';
     let vcard = `
 BEGIN:VCARD
 VERSION:3.0
@@ -15,7 +10,6 @@ FN:Propietario
 TEL;waid=${ownerNumber}:${PhoneNumber('+' + ownerNumber).getNumber('international')}
 END:VCARD`.trim();
 
-    // Enviar contacto
     await conn.sendMessage(m.chat, {
         contacts: {
             displayName: 'Propietario',
