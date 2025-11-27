@@ -7,271 +7,218 @@ let uptime = clockString(_uptime)
 let totalreg = Object.keys(global.db.data.users).length
 let totalCommands = Object.values(global.plugins).filter((v) => v.help && v.tags).length
 
+let txt = `🎯 *¡VISIÓN EGOÍSTA ACTIVADA!*
 
-let txt = `╭━━━━━━━━━━━━━━━━━━━╮
-┃ ⚽️ *ISAGI YOICHI BOT* ⚽️ ┃
-╰━━━━━━━━━━━━━━━━━━━╯
+Soy *Isagi Yoichi IA* ⚽👁️ *${(conn.user.jid == global.conn.user.jid ? '(Bot Principal)' : '(Sub-Bot)')}*
 
-🔥 ¡EGO SISTEM, @${userId.split('@')[0]}! 🔥
+> ꒰⚽ ʚ˚₊‧ ✎ ꒱ FILOSOFÍA:
+- Cada comando es una jugada estratégica
+- La precisión define la victoria final  
+- Opero bajo la filosofía del "Fútbol Egoísta"
 
-┏━━━━━━━━━━━━━━━━┓
-┃ 🏆 *Estado:* ${(conn.user.jid == global.conn.user.jid ? 'Principal ⚡️' : 'Sub-Bot 🔌')}
-┃ ⏰ *Activo:* ${uptime}
-┃ 👥 *Usuarios:* ${totalreg}
-┃ 📊 *Comandos:* ${totalCommands}
-┗━━━━━━━━━━━━━━━━┛
+*╭╼𝅄꒰𑁍⃪⚽👁️ ꒱ 𐔌 ANÁLISIS TÁCTICO 𐦯*
+*|✎ Creador:* 🏆 𝔻𝕦𝕒𝕣𝕥𝕖𝕩𝕍 🏆
+*|✎ Jugadores:* ${totalreg.toLocaleString()}
+*|✎ Tiempo Activo:* ${uptime}
+*|✎ Comandos:* ${totalCommands}
+*|✎ Sistema:* PixelCrew-Bails
+*╰─ׅ─ׅ┈─๋︩︪─⚽👁️─╯*
 
-╭─「 🔍 *BUSCADORES* 」
-├ 🌸 .pinterest - Imágenes Pinterest
-├ 🌐 .google - Búsquedas Google
-├ 📺 .yts - Videos YouTube
-├ 🖼️ .imagen - Imágenes Google
-├ 🎌 .infoanime - Info anime/manga
-├ 🎵 .tiktoksearch - Videos TikTok
-├ 💻 .githubsearch - Usuarios GitHub
-├ 🎬 .cuevana - Películas y series
-├ 🐦 .tweetposts - Posts Twitter/X
-├ 🔞 .hentaisearch - Contenido hentai
-├ ❌ .xnxxsearch - Videos Xnxx
-├ 🔞 .xvsearch - Videos Xvideos
-├ 🔞 .pornhubsearch - Videos Pornhub
-╰ 📦 .npmjs - Paquetes NPM
+*╭╼𝅄꒰𑁍⃪⚽👁️ ꒱ 𐔌 ESTADÍSTICAS PERSONALES 𐦯*
+*|✎ Nombre:* ${name}
+*|✎ Nivel:* ${user.level || 1}
+*|✎ Experiencia:* ${user.exp || 0}
+*|✎ Dinero:* ${user.money || 0}
+*╰─ׅ─ׅ┈─๋︩︪─⚽👁️─╯*
 
-╭─「 📥 *DESCARGAS* 」
-├ 🎵 .play - Música/video YouTube
-├ 📱 .tiktok - Videos TikTok
-├ 📷 .instagram - Posts Instagram
-├ 💙 .facebook - Videos Facebook
-├ 📁 .mediafire - Archivos MediaFire
-├ ☁️ .mega - Archivos MEGA
-├ 🐦 .twitter - Videos Twitter/X
-├ 🎬 .ytmp3/.ytmp4 - YouTube por URL
-├ 📌 .pinvid - Videos Pinterest
-├ 📦 .terabox - Archivos Terabox
-├ 🌿 .gitclone - Repositorios GitHub
-├ 📲 .apk - APKs de Aptoide
-├ ❌ .xvideosdl - Descargar Xvideos
-├ ❌ .xnxxdl - Descargar Xnxx
-├ 🎲 .tiktokrandom - TikTok aleatorio
-╰ 📦 .npmdl - Paquetes NPM
+*🎯 SISTEMA DE COMANDOS - VISIÓN COMPLETA*
 
-╭─「 🎨 *STICKERS* 」
-├ 🌟 .s - Crear sticker
-├ 🖼️ .toimg - Sticker a imagen
-├ 😊 .emojimix - Mezclar emojis
-├ 💬 .qc - Stickers con texto
-├ ✍️ .ttp/.attp/.brat - Texto a sticker
-├ 🏷️ .wm - Cambiar marca de agua
-├ 📝 .setmeta - Establecer pack y autor
-├ 🗑️ .delmeta - Eliminar pack stickers
-╰ 👤 .pfp - Foto de perfil
+*꒰⚽👁️ ✎ ꒱ 𐔌 SCOUTING OFENSIVO 𐦯*
+> *𑁍⃪⚽ ❏ .pinterest* - Imágenes estratégicas
+> *𑁍⃪⚽ ❏ .google* - Búsqueda táctica
+> *𑁍⃪⚽ ❏ .yts* - Videos de jugadas
+> *𑁍⃪⚽ ❏ .imagen* - Imágenes de entrenamiento
+> *𑁍⃪⚽ ❏ .infoanime* - Scouting anime
+> *𑁍⃪⚽ ❏ .tiktoksearch* - Videos cortos
+> *𑁍⃪⚽ ❏ .githubsearch* - Scouting código
+> *𑁍⃪⚽ ❏ .cuevana* - Películas tácticas
+> *𑁍⃪⚽ ❏ .tweetposts* - Posts estratégicos
+> *𑁍⃪⚽ ❏ .npmjs* - Paquetes tácticos
+*╰─ׅ─ׅ┈─๋︩︪─⚽👁️─╯*
 
-╭─「 💰 *ECONOMÍA & RPG* 」
-├ 👷 .work - Trabajar
-├ 🎁 .daily - Recompensa diaria
-├ ⛏️ .mine - Minar recursos
-├ 🎰 .casino - Apostar
-├ 🪙 .cf - Cara o cruz
-├ 🎰 .slot - Tragamonedas
-├ 🎲 .ruleta - Ruleta rusa
-├ 💸 .steal - Robar dinero
-├ ⭐ .robarxp - Robar XP
-├ 🏦 .bank - Ver banco
-├ 👛 .wallet - Ver cartera
-├ 💳 .deposit - Depositar
-├ 💰 .withdraw - Retirar
-├ 🤝 .transfer - Transferir dinero
-├ 🛒 .buyall - Comprar con XP
-├ 📦 .cofre - Cofre diario
-├ 📅 .weekly - Regalo semanal
-├ 🗓️ .monthly - Regalo mensual
-├ 🏆 .eboard - Ranking millonarios
-├ 🗺️ .aventura - Aventurarse
-├ ❤️‍🩹 .curar - Curar salud
-├ 🏹 .cazar - Cazar
-├ 🎒 .inv - Ver inventario
-├ 🏰 .mazmorra - Explorar mazmorras
-├ 🎃 .halloween - Dulce o truco
-├ 🎄 .christmas - Regalo navideño
-├ 🦹 .crime - Trabajar ladrón
-╰ 💋 .slut - Trabajo prostituta
+*꒰⚽👁️ ✎ ꒱ 𐔌 DESCARGAS RÁPIDAS 𐦯*
+> *𑁍⃪⚽ ❏ .play* - Jugadas musicales
+> *𑁍⃪⚽ ❏ .tiktok* - Jugadas virales
+> *𑁍⃪⚽ ❏ .instagram* - Posts visuales
+> *𑁍⃪⚽ ❏ .facebook* - Jugadas sociales
+> *𑁍⃪⚽ ❏ .mediafire* - Archivos pesados
+> *𑁍⃪⚽ ❏ .mega* - Almacenamiento táctico
+> *𑁍⃪⚽ ❏ .twitter* - Jugadas rápidas
+> *𑁍⃪⚽ ❏ .ytmp3/.ytmp4* - Jugadas completas
+> *𑁍⃪⚽ ❏ .gitclone* - Clonar estrategias
+> *𑁍⃪⚽ ❏ .apk* - Aplicaciones tácticas
+*╰─ׅ─ׅ┈─๋︩︪─⚽👁️─╯*
 
-╭─「 🎯 *GACHA & WAIFUS* 」
-├ 🎲 .rollwaifu - Buscar waifu
-├ ❤️ .claim - Reclamar personaje
-├ 👥 .harem - Ver colección
-├ 🖼️ .charimage - Imagen personaje
-├ ℹ️ .charinfo - Info personaje
-├ 🎁 .givechar - Regalar personaje
-├ 👍 .vote - Votar personaje
-╰ 🏆 .waifusboard - Top waifus
+*꒰⚽👁️ ✎ ꒱ 𐔌 STICKERS TÁCTICOS 𐦯*
+> *𑁍⃪⚽ ❏ .s* - Sticker rápido
+> *𑁍⃪⚽ ❏ .toimg* - Convertir a imagen
+> *𑁍⃪⚽ ❏ .emojimix* - Combinar emociones
+> *𑁍⃪⚽ ❏ .qc* - Stickers con texto
+> *𑁍⃪⚽ ❏ .ttp/.attp/.brat* - Texto animado
+> *𑁍⃪⚽ ❏ .wm* - Marca de agua
+> *𑁍⃪⚽ ❏ .setmeta* - Configurar pack
+> *𑁍⃪⚽ ❏ .delmeta* - Eliminar pack
+> *𑁍⃪⚽ ❏ .pfp* - Foto de perfil
+*╰─ׅ─ׅ┈─๋︩︪─⚽👁️─╯*
 
-╭─「 🎮 *JUEGOS* 」
-├ ⭕ .ttt - Tres en raya
-├ ✂️ .ppt - Piedra/papel/tijera
-├ ➕ .matematicas - Quiz matemático
-├ 🎪 .ahorcado - Juego del ahorcado
-├ 🔤 .sopa - Sopa de letras
-╰ ⚔️ .pvp - PvP contra usuario
+*꒰⚽👁️ ✎ ꒱ 𐔌 ECONOMÍA DEL EQUIPO 𐦯*
+> *𑁍⃪⚽ ❏ .work* - Entrenar duro
+> *𑁍⃪⚽ ❏ .daily* - Bono diario
+> *𑁍⃪⚽ ❏ .mine* - Minar recursos
+> *𑁍⃪⚽ ❏ .casino* - Apostar fichas
+> *𑁍⃪⚽ ❏ .cf* - Cara o cruz
+> *𑁍⃪⚽ ❏ .slot* - Tragamonedas
+> *𑁍⃪⚽ ❏ .ruleta* - Ruleta rusa
+> *𑁍⃪⚽ ❏ .steal* - Robar balón
+> *𑁍⃪⚽ ❏ .robarxp* - Robar experiencia
+> *𑁍⃪⚽ ❏ .bank* - Banco táctico
+> *𑁍⃪⚽ ❏ .wallet* - Cartera personal
+> *𑁍⃪⚽ ❏ .deposit* - Depositar ganancias
+> *𑁍⃪⚽ ❏ .withdraw* - Retirar fondos
+> *𑁍⃪⚽ ❏ .transfer* - Pase de dinero
+> *𑁍⃪⚽ ❏ .buyall* - Comprar mejoras
+> *𑁍⃪⚽ ❏ .cofre* - Cofre sorpresa
+> *𑁍⃪⚽ ❏ .weekly* - Bono semanal
+> *𑁍⃪⚽ ❏ .monthly* - Bono mensual
+*╰─ׅ─ׅ┈─๋︩︪─⚽👁️─╯*
 
-╭─「 👥 *GRUPOS (Solo admins)* 」
-├ 👻 .hidetag - Mencionar todos oculto
-├ 🦵 .kick - Eliminar usuario
-├ ➕ .add - Invitar usuario
-├ ⬆️ .promote - Dar admin
-├ ⬇️ .demote - Quitar admin
-├ 🔗 .link - Enlace del grupo
-├ 🔄 .revoke - Restablecer enlace
-├ 🔓 .group open/close - Abrir/cerrar grupo
-├ ⚠️ .warn - Advertir usuario
-├ ✅ .unwarn - Quitar advertencias
-├ 📋 .advlist - Ver advertidos
-├ 🔇 .mute - Silenciar usuario
-├ 🔊 .unmute - Quitar silencio
-├ 🗑️ .delete - Eliminar mensaje
-├ 👑 .admins - Mencionar admins
-├ ℹ️ .gp - Info del grupo
-├ 📊 .linea - Usuarios online
-├ 👋 .setwelcome - Mensaje bienvenida
-├ 👋 .setbye - Mensaje despedida
-├ 📊 .encuesta - Crear encuesta
-├ 👻 .fantasmas - Ver inactivos
-├ 🧹 .kickfantasmas - Eliminar inactivos
-├ 📢 .invocar - Invocar todos
-├ 😀 .setemoji - Cambiar emoji
-├ 🌍 .listnum - Eliminar por país
-├ 🖼️ .gpbanner - Cambiar imagen grupo
-├ 📝 .gpname - Cambiar nombre
-├ 📄 .gpdesc - Cambiar descripción
-╰ 🤖 .bot on/off - Encender/apagar bot
+*꒰⚽👁️ ✎ ꒱ 𐔌 GACHA ESTRATÉGICA 𐦯*
+> *𑁍⃪⚽ ❏ .rollwaifu* - Buscar refuerzos
+> *𑁍⃪⚽ ❏ .claim* - Reclutar jugador
+> *𑁍⃪⚽ ❏ .harem* - Plantilla completa
+> *𑁍⃪⚽ ❏ .charimage* - Foto del jugador
+> *𑁍⃪⚽ ❏ .charinfo* - Stats del jugador
+> *𑁍⃪⚽ ❏ .givechar* - Traspaso jugador
+> *𑁍⃪⚽ ❏ .vote* - Votar MVP
+> *𑁍⃪⚽ ❏ .waifusboard* - Tabla de posiciones
+*╰─ׅ─ׅ┈─๋︩︪─⚽👁️─╯*
 
-╭─「 🛠️ *HERRAMIENTAS* 」
-├ 🌤️ .clima - Ver clima
-├ 🈵 .translate - Traducir
-├ ✨ .enhance - Mejorar imagen
-├ 🧮 .calcular - Calculadora
-├ 🎭 .fake - Mensajes falsos
-├ 🔤 .letra - Cambiar fuente
-├ 👁️ .read - Ver imágenes vista única
-├ 🎵 .whatmusic - Identificar canciones
-├ 📸 .ss - Screenshot páginas
-├ 📏 .length - Cambiar tamaño archivos
-├ 🗣️ .say - Repetir mensajes
-├ 📄 .todoc - Crear documentos
-╰ 🕐 .horario - Horario global
+*꒰⚽👁️ ✎ ꒱ 𐔌 JUEGOS DE ESTRATEGIA 𐦯*
+> *𑁍⃪⚽ ❏ .ttt* - Tres en raya táctico
+> *𑁍⃪⚽ ❏ .ppt* - Piedra, papel, tijera
+> *𑁍⃪⚽ ❏ .matematicas* - Entrenamiento mental
+> *𑁍⃪⚽ ❏ .ahorcado* - Adivinar jugada
+> *𑁍⃪⚽ ❏ .sopa* - Sopa de letras
+> *𑁍⃪⚽ ❏ .pvp* - Duelo personal
+*╰─ׅ─ׅ┈─๋︩︪─⚽👁️─╯*
 
-╭─「 🎌 *ANIME & REACCIONES* 」
-├ 🤗 .hug - Dar abrazos
-├ 😘 .kiss - Dar besos
-├ 🤲 .pat - Acariciar
-├ 👋 .slap - Abofetear
-├ 😢 .cry - Llorar
-├ 😊 .happy - Estar feliz
-├ 😠 .angry - Estar enojado
-├ ❤️ .love - Enamorarse
-├ 🦷 .bite - Morder
-├ 😝 .bleh - Sacar lengua
-├ 😳 .blush - Sonrojarse
-├ 😑 .bored - Estar aburrido
-├ 🤗 .cuddle - Acurrucarse
-├ 💃 .dance - Bailar
-├ 🍺 .drunk - Estar borracho
-├ 🍽️ .eat - Comer
-├ 🤦 .facepalm - Palmada cara
-├ 🤰 .impregnate - Embarazar
-├ ⚰️ .kill - Matar
-├ 😂 .laugh - Reírse
-├ 👅 .lick - Lamer
-├ 👉 .poke - Picar
-├ 😤 .pout - Hacer pucheros
-├ 👊 .punch - Dar puñetazo
-├ 🏃 .run - Correr
-├ 😔 .sad - Estar triste
-├ 😨 .scared - Estar asustado
-├ 😏 .seduce - Seducir
-├ 😳 .shy - Sentir timidez
-├ 🌅 .dias - Buenos días
-├ 🌃 .noches - Buenas noches
-├ 😴 .sleep - Irse a dormir
-├ 🚬 .smoke - Fumar
-╰ 🤔 .think - Pensar
+*꒰⚽👁️ ✎ ꒱ 𐔌 TÁCTICA DE GRUPO 𐦯*
+> *𑁍⃪⚽ ❏ .hidetag* - Pase oculto
+> *𑁍⃪⚽ ❏ .kick* - Expulsar jugador
+> *𑁍⃪⚽ ❏ .add* - Contratar refuerzo
+> *𑁍⃪⚽ ❏ .promote* - Ascender a capitán
+> *𑁍⃪⚽ ❏ .demote* - Bajar de categoría
+> *𑁍⃪⚽ ❏ .link* - Enlace del equipo
+> *𑁍⃪⚽ ❏ .revoke* - Cambiar enlace
+> *𑁍⃪⚽ ❏ .group open/close* - Abrir/cerrar equipo
+> *𑁍⃪⚽ ❏ .warn* - Tarjeta amarilla
+> *𑁍⃪⚽ ❏ .unwarn* - Quitar amonestación
+> *𑁍⃪⚽ ❏ .mute* - Tiempo muerto
+> *𑁍⃪⚽ ❏ .unmute* - Reanudar juego
+> *𑁍⃪⚽ ❏ .delete* - Borrar jugada
+> *𑁍⃪⚽ ❏ .admins* - Ver capitanes
+> *𑁍⃪⚽ ❏ .gp* - Info del equipo
+> *𑁍⃪⚽ ❏ .setwelcome* - Mensaje bienvenida
+> *𑁍⃪⚽ ❏ .setbye* - Mensaje despedida
+> *𑁍⃪⚽ ❏ .encuesta* - Votación táctica
+> *𑁍⃪⚽ ❏ .invocar* - Convocar a todos
+> *𑁍⃪⚽ ❏ .gpbanner* - Cambiar escudo
+> *𑁍⃪⚽ ❏ .gpname* - Cambiar nombre equipo
+> *𑁍⃪⚽ ❏ .gpdesc* - Cambiar lema
+> *𑁍⃪⚽ ❏ .bot on/off* - Activar/desactivar
+*╰─ׅ─ׅ┈─๋︩︪─⚽👁️─╯*
 
-╭─「 🔞 *NSFW (Solo +18)* 」
-├ 🔞 .waifu - Waifu NSFW
-├ 🔞 .rule34 - Buscar R34
-├ 🔞 .anal - Contenido anal
-├ 🛁 .bath - Bañarse juntos
-├ 🔞 .blowjob - Hacer mamada
-├ 🔞 .boobjob - Hacer rusa
-├ 🔞 .cum - Venirse
-├ 🔞 .fap - Hacerse paja
-├ 🔞 .ppcouple - Imágenes parejas
-├ 🔞 .footjob - Paja con pies
-├ 🔞 .fuck - Follar
-├ ☕ .cafe - Tomar café juntos
-├ 🔞 .violar - Violar
-├ 🔞 .grabboobs - Agarrar pechos
-├ 🔞 .grop - Manosear
-├ 🔞 .lickpussy - Lamer coño
-├ 🔞 .sixnine - Hacer 69
-├ 🔞 .spank - Dar nalgada
-├ 🔞 .suckboobs - Chupar pechos
-├ 🔞 .undress - Desnudar
-╰ 🔞 .yuri - Hacer tijeras lésbicas
+*꒰⚽👁️ ✎ ꒱ 𐔌 HERRAMIENTAS TÁCTICAS 𐦯*
+> *𑁍⃪⚽ ❏ .clima* - Condiciones del campo
+> *𑁍⃪⚽ ❏ .translate* - Traductor táctico
+> *𑁍⃪⚽ ❏ .enhance* - Mejorar imagen
+> *𑁍⃪⚽ ❏ .calcular* - Cálculos rápidos
+> *𑁍⃪⚽ ❏ .fake* - Jugadas falsas
+> *𑁍⃪⚽ ❏ .letra* - Cambiar tipografía
+> *𑁍⃪⚽ ❏ .read* - Ver imagen única
+> *𑁍⃪⚽ ❏ .whatmusic* - Identificar himno
+> *𑁍⃪⚽ ❏ .ss* - Capturar pantalla
+> *𑁍⃪⚽ ❏ .length* - Ajustar tamaño
+> *𑁍⃪⚽ ❏ .say* - Repetir mensaje
+> *𑁍⃪⚽ ❏ .todoc* - Crear documento
+> *𑁍⃪⚽ ❏ .horario* - Horario global
+*╰─ׅ─ׅ┈─๋︩︪─⚽👁️─╯*
 
-╭─「 📝 *PERFIL & USUARIO* 」
-├ 📝 .reg - Registrarse
-├ ❌ .unreg - Eliminar registro
-├ 👤 .profile - Ver perfil
-├ 💍 .marry - Casarse
-├ 💔 .divorce - Divorciarse
-├ ⚥ .setgenre - Establecer género
-├ ❌ .delgenre - Eliminar género
-├ 🎂 .setbirth - Fecha nacimiento
-├ ❌ .delbirth - Eliminar fecha
-├ 📄 .setdescription - Descripción
-├ ❌ .deldescription - Eliminar descripción
-├ 🏆 .lb - Top usuarios XP
-├ 📊 .level - Ver nivel
-├ ⭐ .comprarpremium - Comprar premium
-╰ 💌 .confesiones - Confesar sentimientos
+*꒰⚽👁️ ✎ ꒱ 𐔌 REACCIONES EMOCIONALES 𐦯*
+> *𑁍⃪⚽ ❏ .hug* - Abrazo de equipo
+> *𑁍⃪⚽ ❏ .kiss* - Beso de gol
+> *𑁍⃪⚽ ❏ .pat* - Palmada de ánimo
+> *𑁍⃪⚽ ❏ .slap* - Tarjeta roja
+> *𑁍⃪⚽ ❏ .cry* - Llorar derrota
+> *𑁍⃪⚽ ❏ .happy* - Celebrar victoria
+> *𑁍⃪⚽ ❏ .angry* - Enfado táctico
+> *𑁍⃪⚽ ❏ .love* - Amor al juego
+> *𑁍⃪⚽ ❏ .dance* - Baile de gol
+> *𑁍⃪⚽ ❏ .laugh* - Risas en vestuario
+> *𑁍⃪⚽ ❏ .run* - Correr al ataque
+> *𑁍⃪⚽ ❏ .dias* - Buenos días equipo
+> *𑁍⃪⚽ ❏ .noches* - Buenas noches
+> *𑁍⃪⚽ ❏ .think* - Pensar jugada
+*╰─ׅ─ׅ┈─๋︩︪─⚽👁️─╯*
 
-╭─「 ⚙️ *INFORMACIÓN & CONFIG* 」
-├ 📡 .ping - Velocidad bot
-├ ⏱️ .uptime - Tiempo activo
-├ 🤖 .serbot - Crear SubBot
-├ 📱 .qr - Código QR SubBot
-├ 📊 .status - Estado del bot
-├ ℹ️ .infobot - Info completa bot
-├ 📜 .script - Código fuente
-├ 👨‍💻 .staff - Desarrolladores
-├ 🔗 .bots - Lista Sub-Bots
-├ 🌐 .links - Enlaces oficiales
-├ 💡 .sug - Sugerir comando
-├ 🐛 .reporte - Reportar errores
-├ 💻 .sistema - Estado sistema
-├ 🚀 .speed - Estadísticas velocidad
-├ 👥 .views - Cantidad usuarios
-├ 🛠️ .funciones - Ver funciones
-├ 🔄 .ds - Limpiar sesión
-╰ 🤖 .editautoresponder - Config auto respuesta
+*꒰⚽👁️ ✎ ꒱ 𐔌 SISTEMA DE PERFIL 𐦯*
+> *𑁍⃪⚽ ❏ .reg* - Fichar por el equipo
+> *𑁍⃪⚽ ❏ .unreg* - Dar de baja
+> *𑁍⃪⚽ ❏ .profile* - Ver ficha técnica
+> *𑁍⃪⚽ ❏ .marry* - Contrato largo
+> *𑁍⃪⚽ ❏ .divorce* - Romper contrato
+> *𑁍⃪⚽ ❏ .setgenre* - Definir posición
+> *𑁍⃪⚽ ❏ .setbirth* - Fecha debut
+> *𑁍⃪⚽ ❏ .setdescription* - Biografía
+> *𑁍⃪⚽ ❏ .lb* - Tabla de goleadores
+> *𑁍⃪⚽ ❏ .level* - Nivel de habilidad
+> *𑁍⃪⚽ ❏ .comprarpremium* - Contrato premium
+> *𑁍⃪⚽ ❏ .confesiones* - Confesiones tácticas
+*╰─ׅ─ׅ┈─๋︩︪─⚽👁️─╯*
 
-┏━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃⚽️ *¿Tu propio bot?* Usa .code            ┃
-┃✨ Escribe el comando para usarlo    ┃
-┗━━━━━━━━━━━━━━━━━━━━━━━━━┛`.trim()
+*꒰⚽👁️ ✎ ꒱ 𐔌 CONFIGURACIÓN TÁCTICA 𐦯*
+> *𑁍⃪⚽ ❏ .ping* - Velocidad de pase
+> *𑁍⃪⚽ ❏ .uptime* - Tiempo en cancha
+> *𑁍⃪⚽ ❏ .serbot* - Crear suplente
+> *𑁍⃪⚽ ❏ .qr* - Código de acceso
+> *𑁍⃪⚽ ❏ .status* - Estado del equipo
+> *𑁍⃪⚽ ❏ .infobot* - Info completa
+> *𑁍⃪⚽ ❏ .script* - Manual táctico
+> *𑁍⃪⚽ ❏ .staff* - Cuerpo técnico
+> *𑁍⃪⚽ ❏ .bots* - Jugadores suplentes
+> *𑁍⃪⚽ ❏ .links* - Redes del equipo
+> *𑁍⃪⚽ ❏ .sug* - Sugerir jugadas
+> *𑁍⃪⚽ ❏ .reporte* - Reportar lesión
+> *𑁍⃪⚽ ❏ .sistema* - Estado sistema
+> *𑁍⃪⚽ ❏ .speed* - Estadísticas velocidad
+> *𑁍⃪⚽ ❏ .views* - Espectadores
+> *𑁍⃪⚽ ❏ .funciones* - Jugadas disponibles
+> *𑁍⃪⚽ ❏ .ds* - Limpiar vestuario
+*╰─ׅ─ׅ┈─๋︩︪─⚽👁️─╯*
+
+> ⚽ *Cada comando es una oportunidad de gol* 👁️`.trim()
 
 await conn.sendMessage(m.chat, { 
 text: txt,
 contextInfo: {
 mentionedJid: [userId],
 externalAdReply: {                
-title: botname,
-body: textbot,
+title: 'Isagi Yoichi IA',
+body: 'Sistema de Visión Egoísta - Modo Fútbol',
 mediaType: 1,
-mediaUrl: redes,
-sourceUrl: redes,
-thumbnail: await (await fetch(banner)).buffer(),
+mediaUrl: global.redes || '',
+sourceUrl: global.redes || '',
+thumbnail: await (await fetch(global.banner || 'https://files.catbox.moe/l8qiik.jpeg')).buffer(),
 showAdAttribution: false,
 containsAutoReply: true,
 renderLargerThumbnail: true
@@ -290,4 +237,3 @@ let minutes = Math.floor((ms / (1000 * 60)) % 60)
 let hours = Math.floor((ms / (1000 * 60 * 60)) % 24)
 return `${hours}h ${minutes}m ${seconds}s`
 }
-
