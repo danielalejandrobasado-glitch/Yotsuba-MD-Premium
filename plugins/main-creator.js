@@ -4,7 +4,7 @@ VERSION:3.0
 FN:DuarteXV 
 ORG:DuarteXV 
 TITLE:Epictetus, Enchiridion — Chapter 1 (verse 1)
-EMAIL;type=INTERNET:duartexv.ofc@gmail.com 
+EMAIL;type=INTERNET:duartexv.ofc@gmail.com;
 TEL;type=CELL;waid=573244642273:+573244642273
 ADR;type=WORK:;;2-chōme-7-5 Fuchūchō;Izumi;Osaka;594-0071;Japan
 URL;type=WORK:https://www.instagram.com/duarte.mc?igsh=MW5nb2I0YjM2Ym81Mg==
