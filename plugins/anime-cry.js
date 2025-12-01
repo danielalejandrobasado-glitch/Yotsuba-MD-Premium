@@ -1,48 +1,51 @@
-/* 
-codigo creado por Brauliovh3
-virtual concert experience https://github.com/Brauliovh3/HATSUNE-MIKU
-*/
-
-import fs from 'fs'
-import path from 'path'
+import fs from 'fs';
+import path from 'path';
 
 let handler = async (m, { conn, usedPrefix }) => {
-    let who = m.mentionedJid.length > 0 ? m.mentionedJid[0] : (m.quoted ? m.quoted.sender : m.sender)
-    let name = conn.getName(who)
-    let name2 = conn.getName(m.sender)
+    let who;
 
-    let str = m.mentionedJid.length > 0 || m.quoted 
-        ? `💢 **${name2}** está derramando lágrimas por **${name || who}**... ¿ACASO ERES DÉBIL? 🩸\n*Las lágrimas no ganan partidos, solo demuestran tu hambre de superación.* ⚽🔥` 
-        : `💢 **${name2}** está llorando en solitario... ¿BUSCAS LA EVOLUCIÓN?\n*Hasta las lágrimas deben servir para crecer. ¡CONVIÉRTELAS EN PODER!* 💧➡️💥`
+    if (m.mentionedJid.length > 0) {
+        who = m.mentionedJid[0];
+    } else if (m.quoted) {
+        who = m.quoted.sender;
+    } else {
+        who = m.sender;
+    }
+
+    let name = conn.getName(who);
+    let name2 = conn.getName(m.sender);
+    m.react('😭');
+
+    let str;
+    if (m.mentionedJid.length > 0) {
+        str = `\`${name2}\` *está llorando por culpa de* \`${name || who}\`.`;
+    } else if (m.quoted) {
+        str = `\`${name2}\` *está llorando por* \`${name || who}\`.`;
+    } else {
+        str = `\`${name2}\` *esta llorando.*`.trim();
+    }
 
     if (m.isGroup) {
-        let pp = 'https://litter.catbox.moe/n0ew3er2iays5uwn.mp4'
-        let pp2 = 'https://litter.catbox.moe/8pk0ge34o47ilw6a.mp4'
-        let pp3 = 'https://litter.catbox.moe/hnlvhfh64f4xpc2x.mp4'
-        let pp4 = 'https://litter.catbox.moe/dmdp0rryr4gnht4r.mp4'
-        let pp5 = 'https://litter.catbox.moe/51acng21azvakg4n.mp4'
-        let pp6 = 'https://litter.catbox.moe/tmsxetb4ctrn6qpt.mp4'
-        let pp7 = 'https://litter.catbox.moe/psinj6y62lj924bl.mp4'
-        let pp8 = 'https://litter.catbox.moe/icuv01ingui6zlfo.mp4'
-        
-        const videos = [pp, pp2, pp3, pp4, pp5, pp6, pp7, pp8]
-        const video = videos[Math.floor(Math.random() * videos.length)]
-        
-        // 🦅 AZUL CIELO: DONDE LOS DÉBILES LLORAN Y LOS FUERTES SE FORJAN
-        conn.sendMessage(m.chat, { 
-            video: { url: video }, 
-            gifPlayback: true, 
-            caption: str, 
-            ptt: true, 
-            mentions: [who] 
-        }, { quoted: m })
+        let pp = 'https://qu.ax/gRjHK.mp4'; 
+        let pp2 = 'https://qu.ax/VjjCJ.mp4'; 
+        let pp3 = 'https://qu.ax/ltieQ.mp4';
+        let pp4 = 'https://qu.ax/oryVi.mp4';
+        let pp5 = 'https://qu.ax/YprzU.mp4';
+        let pp6 = 'https://qu.ax/nxaUW.mp4';
+        let pp7 = 'https://qu.ax/woSGV.mp4';
+        let pp8 = 'https://qu.ax/WkmA.mp4';
+
+        const videos = [pp, pp2, pp3, pp4, pp5, pp6, pp7, pp8];
+        const video = videos[Math.floor(Math.random() * videos.length)];
+
+        let mentions = [who];
+        conn.sendMessage(m.chat, { video: { url: video }, gifPlayback: true, caption: str, mentions }, { quoted: m });
     }
 }
 
-// 🎌 SOLO AQUEL CON HAMBRE DE VICTORIA USA ESTOS COMANDOS
-handler.help = ['cry']
-handler.tags = ['anime']
-handler.command = ['cry', 'llorar', 'lagrimas']
-handler.group = true
+handler.help = ['cry/llorar @tag'];
+handler.tags = ['anime'];
+handler.command = ['cry', 'llorar'];
+handler.group = true;
 
-export default handler
+export default handler;
