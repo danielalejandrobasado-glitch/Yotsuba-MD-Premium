@@ -1,5 +1,5 @@
 const handler = async (m, { conn, usedPrefix, command, args }) => {
-  
+
   if (command && command.includes('menu')) {
     console.log('🔍 DEBUG MENU:', {
       command: command,
@@ -7,7 +7,7 @@ const handler = async (m, { conn, usedPrefix, command, args }) => {
       message: Object.keys(m.message || {})
     })
   }
-  
+
   let userId = m.mentionedJid && m.mentionedJid[0] ? m.mentionedJid[0] : m.sender
   let user = global.db.data.users[userId]
   let name = conn.getName(userId)
@@ -15,11 +15,11 @@ const handler = async (m, { conn, usedPrefix, command, args }) => {
   let uptime = clockString(_uptime)
   let totalreg = Object.keys(global.db.data.users).length
   let totalCommands = Object.values(global.plugins).filter((v) => v.help && v.tags).length
-  
+
   usedPrefix = '.'
 
   const menuCommand = command || ''
-  
+
   const BLUELOCK_VIDEO = "https://files.catbox.moe/svtosy.mp4"
 
   const frameTop = `╔════════════════════════════════════╗`
@@ -51,7 +51,6 @@ ${frameBot}
 
 🌀 *ELIGE TU ARMA STRIKER*
 Categorías disponibles:`
-
 
     const footer = "🔵🔥 EGO: DESPIERTA TU ARMA STRIKER"
 
@@ -114,7 +113,6 @@ ${frameBot}
     }
   }
 
-
   //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   //             HERRAMIENTAS
   //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -173,12 +171,11 @@ ${frameBot}
     }
   }
 
-
   //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   //              BUSCADORES
   //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   if (menuCommand === 'menu_buscadores') {
-    
+
     const buttons = [['⬅️ Volver', 'menu']]
 
     const text = `${frameTop}
@@ -215,7 +212,6 @@ ${frameBot}
     }
   }
 
-
   //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   //                JUEGOS
   //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -250,7 +246,6 @@ ${frameBot}
       return await conn.sendMessage(m.chat, { text }, { quoted: m })
     }
   }
-
 
   //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   //                ANIME
@@ -322,7 +317,6 @@ ${frameBot}
     }
   }
 
-
   //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   //              GRUPOS
   //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -359,7 +353,6 @@ ${frameBot}
       return await conn.sendMessage(m.chat, { text }, { quoted: m })
     }
   }
-
 
   //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   //                INFO BOT
@@ -406,18 +399,17 @@ function clockString(ms) {
   return `${hours}h ${minutes}m ${seconds}s`
 }
 
-
 handler.before = async function (m, { conn }) {
   if (!m.message) return false
-  
+
   let buttonId = null
-  
+
   if (m.message.templateButtonReplyMessage)
     buttonId = m.message.templateButtonReplyMessage.selectedId
-  
+
   if (m.message.buttonsResponseMessage)
     buttonId = m.message.buttonsResponseMessage.selectedButtonId
-  
+
   if (m.message.listResponseMessage)
     buttonId = m.message.listResponseMessage.singleSelectReply?.selectedRowId
 
@@ -430,7 +422,7 @@ handler.before = async function (m, { conn }) {
       }
     } catch {}
   }
-  
+
   if (buttonId && buttonId.startsWith('menu')) {
     try {
       await handler(m, { conn, usedPrefix: '.', command: buttonId, args: [] })
