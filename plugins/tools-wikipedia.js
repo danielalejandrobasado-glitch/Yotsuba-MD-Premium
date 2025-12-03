@@ -1,11 +1,11 @@
- import axios from 'axios'
+import axios from 'axios'
 
 let handler = async (m, { text }) => {
     const emoji = '🔍'
     const emoji2 = '❌'
 
     if (!text) 
-        return conn.reply(m.chat, `${emoji} Ingresa lo que quieres buscar en Wikipedia.`, m, global.rcanal)
+        return await conn.sendMessage(m.chat, { text: `${emoji} Ingresa lo que quieres buscar en Wikipedia.` }, { quoted: m })
 
     try {
         const { data } = await axios.get('https://api-adonix.ultraplus.click/search/wikipedia', {
@@ -17,43 +17,45 @@ let handler = async (m, { text }) => {
         })
 
         if (!data.result || data.result.length === 0) 
-            return m.reply(`${emoji2} No se encontraron resultados.`)
+            return await conn.sendMessage(m.chat, { text: `${emoji2} No se encontraron resultados.` }, { quoted: m })
 
         let reply = `🔰 *Wikipedia* - Resultados para: "${text}"\n\n`
-
-        for (let i = 0; i < data.result.length; i++) {
-            const r = data.result[i]
+        data.result.forEach((r, i) => {
             reply += `*${i + 1}.* Título: ${r.title}\n`
             reply += `Descripción: ${r.description || 'Sin descripción disponible.'}\n`
             reply += `URL: ${r.url}\n\n`
-        }
+        })
 
-        for (let r of data.result) {
-            if (r.thumbnail) {
-                try {
-                    const imageResponse = await axios.get(r.thumbnail, {
-                        responseType: 'arraybuffer',
-                        headers: {
-                            'User-Agent': 'Mozilla/5.0 (Linux; Android 13; SM-A035M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36'
-                        }
-                    })
-                    await conn.sendMessage(m.chat, { 
-                        image: { 
-                            buffer: Buffer.from(imageResponse.data, 'binary') 
-                        }, 
-                        caption: `🔰 *Wikipedia* - ${r.title}\n${r.description || ''}\n${r.url}`
-                    }, { quoted: m })
-                } catch (imgErr) {
-                    console.error(`Error cargando thumbnail: ${r.thumbnail}`, imgErr)
-                }
+     
+        const firstWithImage = data.result.find(r => r.thumbnail)
+
+        if (firstWithImage) {
+            try {
+                const imageResponse = await axios.get(firstWithImage.thumbnail, {
+                    responseType: 'arraybuffer',
+                    headers: {
+                        'User-Agent': 'Mozilla/5.0 (Linux; Android 13; SM-A035M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36'
+                    }
+                })
+
+                await conn.sendMessage(m.chat, { 
+                    image: { buffer: Buffer.from(imageResponse.data) }, 
+                    caption: `🔰 *Wikipedia* - ${firstWithImage.title}\n${firstWithImage.description || ''}\n${firstWithImage.url}`
+                }, { quoted: m })
+
+            } catch (imgErr) {
+                console.error(`Error cargando thumbnail: ${firstWithImage.thumbnail}`, imgErr)
+     
+                await conn.sendMessage(m.chat, { text: reply }, { quoted: m })
             }
+        } else {
+     
+            await conn.sendMessage(m.chat, { text: reply }, { quoted: m })
         }
-
-        m.reply(reply)
 
     } catch (e) {
         console.error(e)
-        m.reply(`${emoji2} Error al buscar en Wikipedia.`)
+        await conn.sendMessage(m.chat, { text: `${emoji2} Error al buscar en Wikipedia.` }, { quoted: m })
     }
 }
 
@@ -62,5 +64,3 @@ handler.tags = ['tools']
 handler.command = ['wiki', 'wikipedia']
 
 export default handler
-
-
