@@ -6,40 +6,51 @@ import yts from 'yt-search'
 const youtubeRegexID = /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/))([a-zA-Z0-9_-]{11})/
 
 const primaryFolder = "./primary"
-if (!fs.existsSync(primaryFolder)) {
-  fs.mkdirSync(primaryFolder)
-}
+if (!fs.existsSync(primaryFolder)) fs.mkdirSync(primaryFolder)
 
 function getFilePath(groupId) {
   return path.join(primaryFolder, `${groupId}.json`)
+}
+
+async function fetchWithFallback(urls) {
+  for (const url of urls) {
+    try {
+      const res = await fetch(url)
+      const json = await res.json()
+      if (json.status && json.data) {
+        // Detectar si la API es Adonix o Alya
+        const dlLink = json.data.dl || json.data.url
+        if (dlLink) return { url: dlLink, title: json.data.title }
+      }
+    } catch {}
+  }
+  throw new Error('Todas las APIs fallaron')
 }
 
 const handler = async (m, { conn, text, command }) => {
   const filePath = getFilePath(m.chat)
   if (fs.existsSync(filePath)) {
     let db = JSON.parse(fs.readFileSync(filePath))
-    if (db.primary && conn.user.jid !== db.primary) {
-      return
-    }
+    if (db.primary && conn.user.jid !== db.primary) return
   }
 
   try {
     if (!text.trim()) return conn.reply(m.chat, `⚽ Por favor, ingresa el nombre de la música a descargar.`, m)
 
     let videoIdToFind = text.match(youtubeRegexID)
-    let ytplay2 = await yts(videoIdToFind ? 'https://youtu.be/' + videoIdToFind[1] : text)
+    let ytSearch = await yts(videoIdToFind ? 'https://youtu.be/' + videoIdToFind[1] : text)
 
     if (videoIdToFind) {
       const videoId = videoIdToFind[1]
-      ytplay2 = ytplay2.all.find(item => item.videoId === videoId) || ytplay2.videos.find(item => item.videoId === videoId)
+      ytSearch = ytSearch.all.find(item => item.videoId === videoId) || ytSearch.videos.find(item => item.videoId === videoId)
     }
 
-    ytplay2 = ytplay2.all?.[0] || ytplay2.videos?.[0] || ytplay2
-    if (!ytplay2 || ytplay2.length == 0) return m.reply('✧ No se encontraron resultados para tu búsqueda.')
+    ytSearch = ytSearch.all?.[0] || ytSearch.videos?.[0] || ytSearch
+    if (!ytSearch || ytSearch.length === 0) return m.reply('✧ No se encontraron resultados para tu búsqueda.')
 
-    let { title, thumbnail, timestamp, views, ago, url, author } = ytplay2
+    let { title, thumbnail, timestamp, views, ago, url, author } = ytSearch
     const vistas = formatViews(views)
-    const canalLink = author.url || 'Desconocido'
+    const canalLink = author?.url || 'Desconocido'
 
     const infoMessage = `
 ⚽ 𝗬𝗼𝘂𝗧𝘂𝗯𝗲 𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱 | 𝗕𝗹𝘂𝗲 𝗟𝗼𝗰𝗸
@@ -75,66 +86,38 @@ const handler = async (m, { conn, text, command }) => {
 
     await conn.reply(m.chat, infoMessage, m, JT)
 
-    // 🌀 Audio (MP3)
+    const audioAPIs = [
+      `https://rest.alyabotpe.xyz/dl/ytmp3?url=${encodeURIComponent(url)}&key=stellar-j3sPK5q1`,
+      `https://api-adonix.ultraplus.click/download/ytaudio?apikey=DuarteXVKey34&url=${encodeURIComponent(url)}`
+    ]
+
+    const videoAPIs = [
+      `https://rest.alyabotpe.xyz/dl/ytmp4?url=${encodeURIComponent(url)}&quality=144&key=stellar-j3sPK5q1`,
+      `https://api-adonix.ultraplus.click/download/ytvideo?apikey=DuarteXVKey34&url=${encodeURIComponent(url)}`
+    ]
+
     if (['play', 'yta', 'ytmp3', 'playaudio'].includes(command)) {
       try {
-        const api = await (await fetch(
-          `https://rest.alyabotpe.xyz/dl/ytmp3?url=${encodeURIComponent(url)}&key=stellar-j3sPK5q1`
-        )).json()
-
-        if (!api.status) throw new Error('La API no devolvió status=true')
-
-        const result = api.data?.dl
-        const titulo = api.data?.title || 'audio'
-
-        if (!result) throw new Error('No se generó el enlace.')
-
+        const data = await fetchWithFallback(audioAPIs)
         await conn.sendMessage(m.chat, {
-          audio: { url: result },
-          fileName: `${titulo}.mp3`,
+          audio: { url: data.url },
+          fileName: `${data.title || 'audio'}.mp3`,
           mimetype: 'audio/mpeg',
           ptt: false
         }, { quoted: m })
-
       } catch (e) {
-        return conn.reply(m.chat, `
-⚽ ¡𝗚𝗼𝗹 𝗳𝗮𝗹𝗹𝗮𝗱𝗼! 𝗡𝗼 𝗽𝘂𝗱𝗶𝗺𝗼𝘀 𝗲𝗻𝘃𝗶𝗮𝗿 𝗲𝗹 𝗮𝗿𝗰𝗵𝗶𝘃𝗼.
-
-⚡ 𝗣𝗼𝘀𝗶𝗯𝗹𝗲𝘀 𝗰𝗮𝘂𝘀𝗮𝘀:
-  ↯ 𝗘𝗹 𝗮𝗿𝗰𝗵𝗶𝘃𝗼 𝗲𝘀 𝗱𝗲𝗺𝗮𝘀𝗶𝗮𝗱𝗼 𝗴𝗿𝗮𝗻𝗱𝗲.
-  ↯ 𝗢𝗰𝘂𝗿𝗿𝗶𝗼́ 𝘂𝗻 𝗲𝗿𝗿𝗼𝗿 𝗶𝗻𝗲𝘀𝗽𝗲𝗿𝗮𝗱𝗼.
-`, m)
+        return conn.reply(m.chat, `⚽ ¡Fallo en la descarga de audio! ${e.message}`, m)
       }
-    }
-
-    // 🎥 Video (MP4)
-    else if (['play2', 'ytv', 'ytmp4'].includes(command)) {
+    } else if (['play2', 'ytv', 'ytmp4'].includes(command)) {
       try {
-        const api = await (await fetch(
-          `https://rest.alyabotpe.xyz/dl/ytmp4?url=${encodeURIComponent(url)}&quality=144&key=stellar-j3sPK5q1`
-        )).json()
-
-        if (!api.status) throw new Error('La API no devolvió status=true')
-
-        const result = api.data?.dl
-        const titulo = api.data?.title || 'video'
-
-        if (!result) throw new Error('No se generó el enlace.')
-
+        const data = await fetchWithFallback(videoAPIs)
         await conn.sendMessage(m.chat, {
-          document: { url: result },
-          fileName: `${titulo}.mp4`,
+          document: { url: data.url },
+          fileName: `${data.title || 'video'}.mp4`,
           mimetype: 'video/mp4'
         }, { quoted: m })
-
       } catch (e) {
-        return conn.reply(m.chat, `
-⚽ ¡𝗚𝗼𝗹 𝗳𝗮𝗹𝗹𝗮𝗱𝗼! 𝗡𝗼 𝗽𝘂𝗱𝗶𝗺𝗼𝘀 𝗲𝗻𝘃𝗶𝗮𝗿 𝗲𝗹 𝗮𝗿𝗰𝗵𝗶𝘃𝗼.
-
-⚡ 𝗣𝗼𝘀𝗶𝗯𝗹𝗲𝘀 𝗰𝗮𝘂𝘀𝗮𝘀:
-  ↯ 𝗘𝗹 𝗮𝗿𝗰𝗵𝗶𝘃𝗼 𝗲𝘀 𝗱𝗲𝗺𝗮𝘀𝗶𝗮𝗱𝗼 𝗴𝗿𝗮𝗻𝗱𝗲.
-  ↯ 𝗢𝗰𝘂𝗿𝗿𝗶𝗼́ 𝘂𝗻 𝗲𝗿𝗿𝗼𝗿 𝗶𝗻𝗲𝘀𝗽𝗲𝗿𝗮𝗱𝗼.
-`, m)
+        return conn.reply(m.chat, `⚽ ¡Fallo en la descarga de video! ${e.message}`, m)
       }
     } else {
       return conn.reply(m.chat, '✧︎ Comando no reconocido.', m)
