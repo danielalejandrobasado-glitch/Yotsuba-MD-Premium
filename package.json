@@ -76,7 +76,8 @@
     "uuid": "^10.0.0",
     "yargs": "^17.3.1",
     "yt-search": "^2.10.3",
-    "ytdl-core": "^4.11.5"
+    "ytdl-core": "^4.11.5",
+    "webp-converter": "*"
     
   },
   "optionalDependencies": {
