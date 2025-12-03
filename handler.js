@@ -55,6 +55,8 @@ if (!("commands" in user) || !isNumber(user.commands)) user.commands = 0
 if (!("afk" in user) || !isNumber(user.afk)) user.afk = -1
 if (!("afkReason" in user)) user.afkReason = ""
 if (!("warn" in user) || !isNumber(user.warn)) user.warn = 0
+if (!("registered" in user)) user.registered = false
+if (!("regTime" in user)) user.regTime = 0
 } else global.db.data.users[m.sender] = {
 name: m.name,
 exp: 0,
@@ -74,7 +76,9 @@ bannedReason: "",
 commands: 0,
 afk: -1,
 afkReason: "",
-warn: 0
+warn: 0,
+registered: false,
+regTime: 0
 }
 const chat = global.db.data.chats[m.chat]
 if (typeof chat !== "object") global.db.data.chats[m.chat] = {}
@@ -139,7 +143,7 @@ if (queque.indexOf(previousID) === -1) clearInterval(this)
 await delay(time)
 }, time)
 }
- 
+
 if (m.isBaileys) return
 m.exp += Math.ceil(Math.random() * 10)
 let usedPrefix
@@ -277,6 +281,10 @@ if (plugin.owner && !isOwner) {
 fail("owner", m, this)
 continue
 }
+if (plugin.reg && !user.registered) {
+fail("unreg", m, this)
+continue
+}
 if (plugin.premium && !isPrems) {
 fail("premium", m, this)
 continue
@@ -364,7 +372,8 @@ group: `⚽ El comando *${comando}* solo puede ser usado en grupos.`,
 private: `⚽ El comando *${comando}* solo puede ser usado al chat privado del bot.`,
 admin: `⚽ El comando *${comando}* solo puede ser usado por los administradores del grupo.`, 
 botAdmin: `⚽ Para ejecutar el comando *${comando}* debo ser administrador del grupo.`,
-restrict: `⚽ Esta caracteristica está desactivada.`
+restrict: `⚽ Esta caracteristica está desactivada.`,
+unreg: `🚫 *BOT RESTRINGIDO* 🚫\n\n🔥 *Para usar comandos necesitas registrarte*\n\n🎯 *Usa .reg nombre.edad*\n\n*Ejemplo:*\n.reg ${m.name || 'IsagiDelanero'}.18\n\n⚽️ *¡Regístrate para accederp a todas las funciones!*`
 }[type]
 if (msg) return conn.reply(m.chat, msg, m, global.rcanal).then(_ => m.react('✖️'))
 }
