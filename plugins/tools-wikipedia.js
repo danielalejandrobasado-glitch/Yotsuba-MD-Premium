@@ -1,4 +1,4 @@
-import axios from 'axios'
+ import axios from 'axios'
 
 let handler = async (m, { text }) => {
     const emoji = '🔍'
@@ -19,21 +19,37 @@ let handler = async (m, { text }) => {
         if (!data.result || data.result.length === 0) 
             return m.reply(`${emoji2} No se encontraron resultados.`)
 
-        const result = data.result[0]
+        let reply = `🔰 *Wikipedia* - Resultados para: "${text}"\n\n`
 
-        let reply = `🔰 *Wikipedia*\n\n` +
-                    `‣ Título: ${result.title}\n` +
-                    `‣ Descripción: ${result.description || 'Sin descripción disponible.'}\n` +
-                    `‣ URL: ${result.url}`
-
-        if (result.thumbnail) {
-            await conn.sendMessage(m.chat, { 
-                image: { url: result.thumbnail }, 
-                caption: reply 
-            }, { quoted: m })
-        } else {
-            m.reply(reply)
+        for (let i = 0; i < data.result.length; i++) {
+            const r = data.result[i]
+            reply += `*${i + 1}.* Título: ${r.title}\n`
+            reply += `Descripción: ${r.description || 'Sin descripción disponible.'}\n`
+            reply += `URL: ${r.url}\n\n`
         }
+
+        for (let r of data.result) {
+            if (r.thumbnail) {
+                try {
+                    const imageResponse = await axios.get(r.thumbnail, {
+                        responseType: 'arraybuffer',
+                        headers: {
+                            'User-Agent': 'Mozilla/5.0 (Linux; Android 13; SM-A035M) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Mobile Safari/537.36'
+                        }
+                    })
+                    await conn.sendMessage(m.chat, { 
+                        image: { 
+                            buffer: Buffer.from(imageResponse.data, 'binary') 
+                        }, 
+                        caption: `🔰 *Wikipedia* - ${r.title}\n${r.description || ''}\n${r.url}`
+                    }, { quoted: m })
+                } catch (imgErr) {
+                    console.error(`Error cargando thumbnail: ${r.thumbnail}`, imgErr)
+                }
+            }
+        }
+
+        m.reply(reply)
 
     } catch (e) {
         console.error(e)
@@ -46,3 +62,5 @@ handler.tags = ['tools']
 handler.command = ['wiki', 'wikipedia']
 
 export default handler
+
+
