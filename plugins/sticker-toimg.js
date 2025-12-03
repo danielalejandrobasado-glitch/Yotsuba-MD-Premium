@@ -15,24 +15,22 @@ let handler = async (m, { conn }) => {
     try {
         const media = await q.download()
         const tempWebp = path.join(__dirname, 'temp.webp')
-        const tempJpg = path.join(__dirname, 'output.jpg')
+        const tempPng = path.join(__dirname, 'output.png')
         fs.writeFileSync(tempWebp, media)
 
-        await webp.cwebp(tempWebp, tempJpg, "-q 80")
-
-        const out = fs.readFileSync(tempJpg)
-        await conn.sendFile(m.chat, out, 'output.jpg', null, m)
+        await webp.cwebp(tempWebp, tempPng, "-q 80")
+        await conn.sendFile(m.chat, tempPng, 'sticker.png', null, m)
 
         fs.unlinkSync(tempWebp)
-        fs.unlinkSync(tempJpg)
+        fs.unlinkSync(tempPng)
     } catch (e) {
         console.error(e)
-        m.reply('Ocurrió un error al convertir el sticker a JPG.')
+        m.reply('Ocurrió un error al convertir el sticker a imagen.')
     }
 }
 
 handler.help = ['toimg (reply)']
 handler.tags = ['sticker']
-handler.command = ['toimg', 'img', 'jpg']
+handler.command = ['toimg', 'img', 'png', 'jpg']
 handler.reg = true
 export default handler
