@@ -277,3 +277,8 @@ function pickRandom(list) {
 
 async function getRandomChannel() {
     let randomIndex = Math.floor(Math.random() * canalIdM.length)
+    return {
+        id: canalIdM[randomIndex],
+        name: canalNombreM[randomIndex]
+    }
+}
