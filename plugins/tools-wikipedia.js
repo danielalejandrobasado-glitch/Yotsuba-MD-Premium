@@ -8,10 +8,11 @@ let handler = async (m, { text }) => {
         return conn.reply(m.chat, `${emoji} Ingresa lo que quieres buscar en Wikipedia.`, m, global.rcanal)
 
     try {
-        const { data } = await axios.get(`https://api-adonix.ultraplus.click/search/wikipedia`, {
+        const { data } = await axios.get('https://api-adonix.ultraplus.click/search/wikipedia', {
             params: {
                 apikey: 'DuarteXVKey34',
-                q: text
+                q: text,
+                limit: 35
             }
         })
 
@@ -20,14 +21,13 @@ let handler = async (m, { text }) => {
 
         const result = data.result[0]
 
-        let reply = `🔰 *Wikipedia*  
-
-‣ Título: ${result.title}
-‣ Descripción: ${result.description || 'Sin descripción disponible.'}
-‣ URL: ${result.url}`
+        let reply = `🔰 *Wikipedia*\n\n` +
+                    `‣ Título: ${result.title}\n` +
+                    `‣ Descripción: ${result.description || 'Sin descripción disponible.'}\n` +
+                    `‣ URL: ${result.url}`
 
         if (result.thumbnail) {
-            conn.sendMessage(m.chat, { 
+            await conn.sendMessage(m.chat, { 
                 image: { url: result.thumbnail }, 
                 caption: reply 
             }, { quoted: m })
