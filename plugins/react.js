@@ -1,73 +1,63 @@
-import axios from 'axios';
-// -_
-const msgglobal = '❌ Ha ocurrido un error inesperado al intentar enviar las reacciones.';
+import fetch from "node-fetch"
+import fs from "fs"
+import path from "path"
 
-const handler = async (m, { conn, args }) => {
-  const fullArgs = args.join(' ').trim();
+const primaryFolder = "./primary"
+if (!fs.existsSync(primaryFolder)) fs.mkdirSync(primaryFolder)
 
-  if (!fullArgs) {
-    return m.reply(`📝 Ingresa la url del canal y los emojis!\n\n> » Ejemplo: url_canal, emoji1, emoji2`);
+function getFilePath(groupId) {
+  return path.join(primaryFolder, `${groupId}.json`)
+}
+
+async function reactToPostAPI({ postLink, reaction, token }) {
+  const res = await fetch("https://foreign-marna-sithaunarathnapromax-9a005c2e.koyeb.app/api/channel/react-to-post", {
+    method: "POST",
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+      "User-Agent": "Mozilla/5.0 (Android 13; Mobile; rv:146.0) Gecko/146.0 Firefox/146.0",
+      Referer: "https://asitha.top/channel-manager"
+    },
+    body: JSON.stringify({
+      post_link: postLink,
+      reacts: reaction
+    })
+  })
+
+  if (!res.ok) {
+    const text = await res.text()
+    throw new Error(`API falló: ${text}`)
   }
 
-  const parts = fullArgs.split(/,(.*)/s).map(part => part.trim()).filter(Boolean);
-  const postLink = parts[0];
-  const reactsString = parts[1] || '';
+  return res.json()
+}
 
-  if (!postLink || !reactsString) {
-    return m.reply(`❌ Uso incorrecto, el uso correcto es:\n\n> » *url_del_post*, *emoji1*, *emoji2*, ...`);
+const handler = async (m, { conn, text, command }) => {
+  const filePath = getFilePath(m.chat)
+  if (fs.existsSync(filePath)) {
+    const db = JSON.parse(fs.readFileSync(filePath))
+    if (db.primary && conn.user.jid !== db.primary) return
   }
-
-  if (!postLink.includes('whatsapp.com/channel/')) {
-    return m.reply(`❌ El link debe ser de una publicación de **canal de WhatsApp**.`);
-  }
-
-  const emojiArray = reactsString.split(',').map(e => e.trim()).filter(Boolean);
-
-  if (emojiArray.length > 4) {
-    return m.reply(`❌ Máximo **4 emojis** permitidos.`);
-  }
-
-  const apiKey = 'f6be3a763a23ef4a3fa3fb0268694ee6246016d5ce1d6801e7fc354ce803b5ed';
-
-  const requestData = {
-    post_link: postLink,
-    reacts: emojiArray.join(',')
-  };
 
   try {
-    const response = await axios.post(
-      'https://foreign-marna-sithaunarathnapromax-9a005c2e.koyeb.app/api/channel/react-to-post',
-      requestData,
-      {
-        headers: {
-          'Accept': 'application/json, text/plain, */*',
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`,
-          'User-Agent': 'Mozilla/5.0 (Android 13; Mobile; rv:146.0) Gecko/146.0 Firefox/146.0',
-          'Referer': 'https://asitha.top/channel-manager'
-        }
-      }
-    );
+    if (!text) return conn.reply(m.chat, "⚠︎ Ingresa el link del post y la reacción separados por un espacio.\nEjemplo: <link> 🔥", m)
 
-    if (response.data && response.data.message) {
-      await m.reply(`✅ *Reacciones enviadas con éxito* a ${postLink}\n\nMensaje de la API: ${response.data.message}`);
-    } else {
-      await m.reply(msgglobal);
-    }
+    const [postLink, reaction] = text.split(" ")
+    if (!postLink || !reaction) return conn.reply(m.chat, "⚠︎ Formato inválido. Debes poner el link y el emoji de reacción.", m)
 
-  } catch (error) {
-    console.error(error.response?.data || error.message || error);
-    if (error.response && error.response.data && error.response.data.message) {
-      await m.reply(`⚠️ Error de la API: ${error.response.data.message}`);
-    } else {
-      await m.reply(msgglobal);
-    }
+    const token = "f6be3a763a23ef4a3fa3fb0268694ee6246016d5ce1d6801e7fc354ce803b5ed" 
+
+    const result = await reactToPostAPI({ postLink, reaction, token })
+    conn.reply(m.chat, `✅ Reacción enviada correctamente!\nRespuesta: ${JSON.stringify(result)}`, m)
+
+  } catch (err) {
+    conn.reply(m.chat, `⚠︎ Ocurrió un error: ${err.message}`, m)
   }
 }
 
-handler.command = ['react'];
-handler.help = ['react'];
-handler.tags = ['rowner'];
-handler.rowner = false;
+handler.command = handler.help = ['react']
+handler.tags = ['utils']
+handler.group = true
 
-export default handler;
+export default handler
