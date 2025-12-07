@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+// -_
 const msgglobal = '❌ Ha ocurrido un error inesperado al intentar enviar las reacciones.';
 
 const handler = async (m, { conn, args }) => {
