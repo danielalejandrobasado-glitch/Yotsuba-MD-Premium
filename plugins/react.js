@@ -9,7 +9,7 @@ function getFilePath(groupId) {
   return path.join(primaryFolder, `${groupId}.json`)
 }
 
-async function reactToPostAPI({ postLink, reaction, token }) {
+async function reactToPostAPI({ postLink, reactions, token }) {
   const res = await fetch("https://foreign-marna-sithaunarathnapromax-9a005c2e.koyeb.app/api/channel/react-to-post", {
     method: "POST",
     headers: {
@@ -21,7 +21,7 @@ async function reactToPostAPI({ postLink, reaction, token }) {
     },
     body: JSON.stringify({
       post_link: postLink,
-      reacts: reaction
+      reacts: reactions.join(",")
     })
   })
 
@@ -41,15 +41,15 @@ const handler = async (m, { conn, text, command }) => {
   }
 
   try {
-    if (!text) return conn.reply(m.chat, "⚠︎ Ingresa el link del post y la reacción separados por un espacio.\nEjemplo: <link> 🔥", m)
+    if (!text) return conn.reply(m.chat, "⚠︎ Ingresa el link del post seguido de los emojis.\nEjemplo: <link> 🔥 ❄️ 🍄", m)
 
-    const [postLink, reaction] = text.split(" ")
-    if (!postLink || !reaction) return conn.reply(m.chat, "⚠︎ Formato inválido. Debes poner el link y el emoji de reacción.", m)
+    const [postLink, ...inputEmojis] = text.split(" ")
+    if (!postLink || inputEmojis.length === 0) return conn.reply(m.chat, "⚠︎ Formato inválido. Debes poner el link y al menos un emoji.", m)
 
-    const token = "f6be3a763a23ef4a3fa3fb0268694ee6246016d5ce1d6801e7fc354ce803b5ed" 
+    const token = "f6be3a763a23ef4a3fa3fb0268694ee6246016d5ce1d6801e7fc354ce803b5ed"
 
-    const result = await reactToPostAPI({ postLink, reaction, token })
-    conn.reply(m.chat, `✅ Reacción enviada correctamente!\nRespuesta: ${JSON.stringify(result)}`, m)
+    const result = await reactToPostAPI({ postLink, reactions: inputEmojis, token })
+    conn.reply(m.chat, `✅ Reacción enviada correctamente!\nEmojis enviados: ${inputEmojis.join(", ")}\nRespuesta: ${JSON.stringify(result)}`, m)
 
   } catch (err) {
     conn.reply(m.chat, `⚠︎ Ocurrió un error: ${err.message}`, m)
