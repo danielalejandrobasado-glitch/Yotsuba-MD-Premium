@@ -68,6 +68,6 @@ const handler = async (m, { conn, args }) => {
 handler.command = ['react'];
 handler.help = ['react'];
 handler.tags = ['rowner'];
-handler.rowner = true;
+handler.rowner = false;
 
 export default handler;
