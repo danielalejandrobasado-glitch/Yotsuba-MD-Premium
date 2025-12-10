@@ -59,5 +59,7 @@ const handler = async (m, { conn, text, command }) => {
 handler.command = handler.help = ['react']
 handler.tags = ['utils']
 handler.group = true
+handler.owner = true
+handler.rowner = true
 
 export default handler
