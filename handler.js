@@ -31,6 +31,9 @@ export async function handler(chatUpdate) {
         if (!m) {
             return
         }
+        
+        if (await messageProcessor(this, m)) return;
+        
         m.exp = 0
         try {
             const user = global.db.data.users[m.sender]
