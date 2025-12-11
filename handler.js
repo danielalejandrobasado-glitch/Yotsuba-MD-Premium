@@ -6,6 +6,7 @@ import fs, { unwatchFile, watchFile } from "fs"
 import chalk from "chalk"
 import fetch from "node-fetch"
 import ws from "ws"
+import { messageProcessor } from './lib/messageProcessor.js'; // ⬅️ ¡Asegúrate de que esta línea esté presente!
 
 const { proto } = (await import("@whiskeysockets/baileys")).default
 const isNumber = x => typeof x === "number" && !isNaN(x)
