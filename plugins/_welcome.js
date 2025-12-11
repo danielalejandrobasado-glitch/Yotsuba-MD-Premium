@@ -43,7 +43,7 @@ export async function before(m, { conn, participants, groupMetadata }) {
           text: text,
           contextInfo: {
             mentionedJid: [user],
-            forwardingScore: 999,
+            forwardingScore: 1,
             isForwarded: true,
             forwardedNewsletterMessageInfo: {
               newsletterJid: global.ch.ch1,
