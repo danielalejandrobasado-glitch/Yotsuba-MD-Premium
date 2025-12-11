@@ -57,9 +57,7 @@ let handler = async function (m, { conn, text, usedPrefix, command }) {
         title: '🏆 Registro en Isagi Yoichi Bot 🏆',
         body: '¡Tu tarjeta está lista! 🔥',
         thumbnail: thumbBuffer,
-        sourceUrl: channel,
         mediaType: 1,
-        showAdAttribution: true,
         renderLargerThumbnail: true
       }
     }
