@@ -26,7 +26,7 @@ let handler = async function (m, { conn, text, usedPrefix, command }) {
   if (name.length >= 30) return m.reply('🏆 El nombre es muy largo. Usa menos de 30 caracteres.')
   age = parseInt(age)
   if (age > 100) return m.reply('🏆 ¡Esa edad es demasiado alta! Usa una edad real.')
-  if (age < 10) return m.reply('🏆 ¡Eres muy peque para usar el bot!')
+  if (age < 10) return m.reply('🏆 ¡Eres muy pequeño para usar el bot!')
 
   user.name = name.trim() + ' ✨'
   user.age = age
@@ -38,23 +38,24 @@ let handler = async function (m, { conn, text, usedPrefix, command }) {
 
   let sn = createHash('md5').update(m.sender).digest('hex').slice(0, 20)
 
-  let regbot = `\n🌟 *¡REGISTRO  EXITOSO!* 🌟\n\n👤 *Nombre:* ${name}\n🎂 *Edad:* ${age} años\n🆔 *ID:* ${sn}\n\n⚽️ *¡Bienvenido/a al campo de Isagi Yoichi!* ⚽️\n\n🎁 *Recompensas iniciales:*\n💰 +39 monedas\n✨ +300 XP\n🎟️ +20 tickets\n`
+  let regbot = `🌟 *¡REGISTRO EXITOSO!* 🌟\n\n👤 *Nombre:* ${name}\n🎂 *Edad:* ${age} años\n🆔 *ID:* ${sn}\n\n⚽️ *¡Bienvenido/a al campo de Isagi Yoichi!* ⚽️\n\n🎁 *Recompensas iniciales:*\n💰 +39 monedas\n✨ +300 XP\n🎟️ +20 tickets`
 
   await m.react('⚽️')
 
-  
   let thumbBuffer = null
   try {
-    const res = await fetch(mikuImg)
+    const res = await fetch(isagiImg)
     thumbBuffer = Buffer.from(await res.arrayBuffer())
-  } catch {}
+  } catch (e) {
+    console.log('Error descargando imagen:', e)
+  }
 
   await conn.sendMessage(m.chat, {
     text: regbot,
     contextInfo: {
       externalAdReply: {
         title: '🏆 Registro en Isagi Yoichi Bot 🏆',
-        body: '¡Tu tarjeta  está lista! 🔥',
+        body: '¡Tu tarjeta está lista! 🔥',
         thumbnail: thumbBuffer,
         sourceUrl: channel,
         mediaType: 1,
@@ -70,5 +71,3 @@ handler.tags = ['rg']
 handler.command = ['verify', 'verificar', 'reg', 'register', 'registrar']
 
 export default handler
-
-
