@@ -1,79 +1,75 @@
+// HD API ADONIX ☃️
+// Hecho por WILKER-OFC uwu
 import fetch from 'node-fetch'
 import FormData from 'form-data'
 
+async function uploadImage(buffer) {
+  const form = new FormData()
+  form.append('fileToUpload', buffer, 'image.jpg')
+  form.append('reqtype', 'fileupload')
+
+  const res = await fetch('https://catbox.moe/user/api.php', { method: 'POST', body: form })
+  if (!res.ok) throw new Error('Error al subir la imagen')
+  return await res.text()
+}
+
 let handler = async (m, { conn, usedPrefix, command }) => {
-  const ctxErr = (global.rcanalx || {})
-  const ctxWarn = (global.rcanalw || {})
-
-  const quoted = m.quoted ? m.quoted : m
-  const mime = quoted.mimetype || quoted.msg?.mimetype || ''
-
-  if (!/image\/(jpe?g|png)/i.test(mime)) {
-    await conn.sendMessage(m.chat, { react: { text: '❌', key: m.key } })
-    return conn.reply(m.chat, `⚽️ *Responde a una imagen*`, m, rcanal)
-  }
-
   try {
-    await conn.sendMessage(m.chat, { react: { text: '🕒', key: m.key } })
-    conn.reply(m.chat, `♻️ *Procesando imagen...*`, m, ctxWarn)  
+    await m.react('⏳')
 
-    const media = await quoted.download()
-    const base64 = media.toString('base64')
+    let q = m.quoted ? m.quoted : m
+    let mime = (q.msg || q).mimetype || q.mediaType || ''
 
-   
-    let resultBuffer
-    try {
-      const res = await fetch('https://api.ryzendesu.vip/api/ai/enhance', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ image: base64 })
-      })
-      const json = await res.json()
-      
-      if (json?.status && json?.image) {
-        resultBuffer = Buffer.from(json.image, 'base64')
-      } else throw new Error('API 1 falló')
-    } catch {
-     
-      const form = new FormData()
-      form.append('file', media, 'image.jpg')
-      
-      const uploadRes = await fetch('https://telegra.ph/upload', {
-        method: 'POST',
-        body: form
-      })
-      const uploadJson = await uploadRes.json()
-      
-      if (!uploadJson?.[0]?.src) throw new Error('No se pudo subir la imagen')
-      
-      const imageUrl = 'https://telegra.ph' + uploadJson[0].src
-      
-      const res = await fetch(`https://api.betabotz.eu.org/api/tools/remini?url=${encodeURIComponent(imageUrl)}&apikey=beta-Itachi09`, {
-        method: 'GET'
-      })
-      const json = await res.json()
-      
-      if (!json?.status || !json?.url) throw new Error('API no respondió')
-      
-      const imageRes = await fetch(json.url)
-      resultBuffer = Buffer.from(await imageRes.arrayBuffer())
+    if (!mime) {
+      return conn.sendMessage(m.chat, {
+        text: `❇️ Por favor, envía una imagen o responde a una imagen usando *${usedPrefix + command}*`
+      }, { quoted: m })
+    }
+
+    if (!/image\/(jpe?g|png|webp)/.test(mime)) {
+      return conn.sendMessage(m.chat, {
+        text: `⚠️ El formato (${mime}) no es compatible, usa JPG, PNG o WEBP.`
+      }, { quoted: m })
     }
 
     await conn.sendMessage(m.chat, {
-      image: resultBuffer,
-      caption: `✨ *Imagen Mejorada HD*\n💫 *Isagi Yoichi*`
+      text: `⏳ Mejorando tu imagen, espera...`
     }, { quoted: m })
 
-    await conn.sendMessage(m.chat, { react: { text: '✅', key: m.key } })
+    let img = await q.download?.()
+    if (!img) throw new Error('No pude descargar la imagen.')
 
-  } catch (err) {
-    await conn.sendMessage(m.chat, { react: { text: '❌', key: m.key } })
-    conn.reply(m.chat, `❎️ *Error:* ${err.message}`, m, ctxErr)
+    let uploadedUrl = await uploadImage(img)
+
+    const api = `https://api-adonix.ultraplus.click/canvas/hd?apikey=DemonKeytechbot&url=${encodeURIComponent(uploadedUrl)}`
+    const res = await fetch(api)
+    if (!res.ok) throw new Error(`Error en la API: ${res.statusText}`)
+    const data = await res.json()
+
+    if (!data.status || !data.url) throw new Error('No se pudo mejorar la imagen.')
+
+    const improvedRes = await fetch(data.url)
+    const buffer = await improvedRes.buffer()
+
+    await conn.sendMessage(m.chat, {
+      image: buffer,
+      caption: '✅ *Imagen mejorada con éxito*'
+    }, { quoted: m })
+
+    await m.react('✅')
+
+  } catch (e) {
+    console.error(e)
+    await m.react('✖️')
+    await conn.sendMessage(m.chat, {
+      text: '❌ Error al mejorar la imagen, inténtalo más tarde.',
+      ...global.rcanal
+    }, { quoted: m })
   }
 }
 
-handler.help = ["hd"]
-handler.tags = ["imagen"] 
-handler.command = ["hd", "remini", "mejorar"]
+handler.help = ['hd']
+handler.tags = ['tools']
+handler.command = ['remini', 'hd', 'enhance']
 
 export default handler
