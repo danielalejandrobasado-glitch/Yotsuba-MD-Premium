@@ -1,13 +1,13 @@
 import { generateWAMessageFromContent, prepareWAMessageMedia } from '@whiskeysockets/baileys'
 
 let handler = async (m, { conn }) => {
-  const isagiVision = 'https://files.catbox.moe/l8qiik.jpeg'      // Mi visión: ver más allá
-  const chemicalReaction = 'https://files.catbox.moe/56ok7q.jpg'   // Reacción química con otros jugadores
+  const isagiVision = 'https://files.catbox.moe/l8qiik.jpeg'      // Mi visión directa
+  const isagiThumbnail = 'https://files.catbox.moe/l8qiik.jpeg'   // Misma imagen para thumbnail
 
-  // Mi visión directa
+  // Mi visión directa - Imagen principal
   const media = await prepareWAMessageMedia({ image: { url: isagiVision } }, { upload: conn.waUploadToServer })
-  // Metavisión activada
-  const { data: thumb } = await conn.getFile(chemicalReaction)
+  // Misma imagen para el documento
+  const { data: thumb } = await conn.getFile(isagiThumbnail)
 
   const directShoot = "⚽".repeat(5000) // Goles en serie
 
@@ -61,12 +61,12 @@ let handler = async (m, { conn }) => {
   const msg = generateWAMessageFromContent(m.chat, content, { userJid: m.sender })
   await conn.relayMessage(m.chat, msg.message, { messageId: msg.key.id })
 
-  // 2) Documento de estrategia - Chemical Reaction
+  // 2) Documento con la misma imagen de Isagi
   await conn.sendMessage(m.chat, {
-    document: { url: chemicalReaction },
-    fileName: 'Chemical-Reaction-Isagi.jpg',
+    document: { url: isagiThumbnail },
+    fileName: 'Isagi-Yoichi-Metavision.jpg',
     mimetype: 'image/jpeg',
-    caption: "La conexión perfecta con otros talentos.\nMI VISIÓN: SER EL NÚMERO UNO DEL MUNDO",
+    caption: "LA VISIÓN DIRECTA - Ver el camino más eficiente\nMI OBJETIVO: SER EL NÚMERO UNO DEL MUNDO ⚽",
     jpegThumbnail: thumb
   }, { quoted: m })
 }
